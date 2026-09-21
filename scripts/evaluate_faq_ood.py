@@ -107,7 +107,7 @@ def _write_markdown(report: dict[str, Any], path: Path) -> None:
         f"# Chẩn đoán OOD trên {report['source_rows']} FAQ ngân hàng có URL",
         "",
         f"Nguồn hiện hành: `{report['source_file']}` do người dùng thu thập, "
-        f"{report['source_rows']} câu và {report['source_urls']} URL. Không có câu nào do LLM sinh trong tập này. "
+        f"{report['source_rows']} câu và {report['source_urls']} URL. "
         "Người dùng xác nhận URL; Codex rà lại từng nhãn OOD so với 77 intent. "
         "Đây là audit bằng AI, không phải bộ nhãn vàng do hai người gán nhãn độc lập.",
         "Metric FAQ cũng nằm trong `comparison.md` với nguồn gốc nhãn được ghi rõ; "

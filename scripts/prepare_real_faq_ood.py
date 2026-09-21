@@ -4,16 +4,17 @@ from __future__ import annotations
 
 import re
 import sys
+import unicodedata
 from pathlib import Path
 from urllib.parse import urlparse
 
 import numpy as np
 import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-
-from intentguard.review import duplicate_groups, review_key
 
 INPUT = ROOT / "data/raw/vietnam_banks_faq_100.csv"
 OUTPUT = ROOT / "data/processed/faq_ood_real"
@@ -33,6 +34,41 @@ REVIEW_REWRITES = {
     ),
 }
 
+
+def _match_key(value: object) -> str:
+    """Tạo khóa Unicode để kiểm tra câu trùng sau khi bỏ dấu câu và khoảng trắng thừa."""
+    normalized = unicodedata.normalize("NFKC", str(value)).casefold()
+    return re.sub(r"[\W_]+", " ", normalized, flags=re.UNICODE).strip()
+
+
+def _duplicate_groups(texts: list[str], similarity: float = 0.92) -> list[int]:
+    """Nhóm câu trùng hoặc gần trùng để không tách chúng sang hai split khác nhau."""
+    parent = list(range(len(texts)))
+
+    def root(index: int) -> int:
+        while parent[index] != index:
+            parent[index] = parent[parent[index]]
+            index = parent[index]
+        return index
+
+    def join(left: int, right: int) -> None:
+        parent[root(right)] = root(left)
+
+    keys = [_match_key(value) for value in texts]
+    seen: dict[str, int] = {}
+    for index, key in enumerate(keys):
+        if key in seen:
+            join(index, seen[key])
+        else:
+            seen[key] = index
+    eligible = [index for index, key in enumerate(keys) if len(key) >= 20]
+    if len(eligible) >= 2:
+        vectors = TfidfVectorizer(analyzer="char", ngram_range=(3, 5)).fit_transform([keys[i] for i in eligible])
+        scores = cosine_similarity(vectors)
+        for row in range(len(eligible)):
+            for column in np.flatnonzero(scores[row, row + 1 :] >= similarity) + row + 1:
+                join(eligible[row], eligible[int(column)])
+    return [root(index) for index in range(len(texts))]
 
 def normalize_bank_names(value: str) -> str:
     """Ẩn tên ngân hàng trong câu hỏi nhưng giữ tên sản phẩm và nội dung.
@@ -101,9 +137,9 @@ def prepare_faq(frame: pd.DataFrame, domain_texts: list[str]) -> pd.DataFrame:
             raise ValueError(f"Câu nguồn {number} đã thay đổi; cần rà lại bản thu gọn trước khi xuất")
         result.loc[number - 1, "text_reviewed"] = reviewed_text
     result["text"] = result.text_reviewed.map(normalize_bank_names)
-    domain_keys = set(map(review_key, domain_texts))
+    domain_keys = set(map(_match_key, domain_texts))
     for column in ("text_original", "text_reviewed", "text"):
-        keys = result[column].map(review_key)
+        keys = result[column].map(_match_key)
         if keys.duplicated().any():
             raise ValueError(f"FAQ trùng chính xác theo {column}")
         if set(keys) & domain_keys:
@@ -147,7 +183,7 @@ def split_by_source_url(frame: pd.DataFrame, seed: int = 42) -> tuple[pd.DataFra
     if set(validation.source_url) & set(test.source_url):
         raise ValueError("URL nguồn bị tách giữa validation và test")
     for column in ("text_original", "text"):
-        groups = duplicate_groups(frame[column].tolist())
+        groups = _duplicate_groups(frame[column].tolist())
         memberships: dict[int, set[bool]] = {}
         for group, is_validation in zip(groups, frame.source_url.isin(selected_urls), strict=True):
             memberships.setdefault(group, set()).add(bool(is_validation))

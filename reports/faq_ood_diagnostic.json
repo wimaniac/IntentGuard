@@ -1,0 +1,630 @@
+{
+  "status": "included_with_ai_review_provenance",
+  "source_file": "data/raw/vietnam_banks_faq_100.csv",
+  "source_rows": 100,
+  "source_urls": 45,
+  "label_quality": "urls_confirmed_by_user; all_100_ood_labels_reviewed_by_codex_ai; not_two_human_gold",
+  "audit_file": "reports/faq_ood_label_audit.csv",
+  "audit": {
+    "approved_ood": 100,
+    "focused_rewrites": 2,
+    "semantic_duplicate_followups": 3
+  },
+  "model_text": "bank_name_normalized",
+  "normalized_rows": 67,
+  "threshold_source": "in_domain_threshold_validation",
+  "backends": {
+    "baseline": {
+      "validation": {
+        "samples": 50,
+        "source_pages": 23,
+        "auroc": 0.9425352112676056,
+        "auprc": 0.5325384691806775,
+        "ood_unknown_recall": 0.74,
+        "in_domain_false_rejection_rate": 0.04983748645720477,
+        "ood_unknown_recall_cluster_ci95": [
+          0.6190476190476191,
+          0.8717948717948718
+        ],
+        "topics": {
+          "INTEREST_RATE": {
+            "count": 12,
+            "unknown_recall": 0.6666666666666666
+          },
+          "LOAN": {
+            "count": 13,
+            "unknown_recall": 0.8461538461538461
+          },
+          "PROMOTION": {
+            "count": 13,
+            "unknown_recall": 0.8461538461538461
+          },
+          "SAVING": {
+            "count": 12,
+            "unknown_recall": 0.5833333333333334
+          }
+        },
+        "accepted_as_known_examples": [
+          {
+            "source_case_id": "faq_real:089",
+            "source_group_id": "url:038",
+            "topic": "PROMOTION",
+            "text": "Khách hàng có thể theo dõi các khuyến mãi đang diễn ra của ngân hàng ở đâu?",
+            "text_original": "Khách hàng có thể theo dõi các khuyến mãi đang diễn ra của MSB ở đâu?",
+            "source_url": "https://www.msb.com.vn/ve-chung-toi/tin-tuc-va-su-kien/uu-dai/",
+            "predicted_intent": "card_arrival",
+            "confidence": 0.9030084383390848
+          },
+          {
+            "source_case_id": "faq_real:044",
+            "source_group_id": "url:019",
+            "topic": "SAVING",
+            "text": "Nếu rút trước hạn sản phẩm tiết kiệm trả lãi ngay, khách hàng được hưởng lãi thế nào?",
+            "text_original": "Nếu rút trước hạn sản phẩm tiết kiệm trả lãi ngay, khách hàng được hưởng lãi thế nào?",
+            "source_url": "https://www.msb.com.vn/khach-hang-ca-nhan/tiet-kiem/tiet-kiem-tra-lai-ngay/",
+            "predicted_intent": "request_refund",
+            "confidence": 0.8454600295428808
+          },
+          {
+            "source_case_id": "faq_real:075",
+            "source_group_id": "url:043",
+            "topic": "INTEREST_RATE",
+            "text": "Lãi suất thẻ S Rewards Mastercard được tính như thế nào?",
+            "text_original": "Lãi suất thẻ VPBank S Rewards Mastercard được tính như thế nào?",
+            "source_url": "https://www.vpbank.com.vn/i/the-shopee",
+            "predicted_intent": "exchange_rate",
+            "confidence": 0.8416294972176499
+          },
+          {
+            "source_case_id": "faq_real:013",
+            "source_group_id": "url:028",
+            "topic": "LOAN",
+            "text": "Sau khi ngân hàng giải ngân, khách hàng có thể theo dõi khoản vay ở đâu?",
+            "text_original": "Sau khi MSB giải ngân, khách hàng có thể theo dõi khoản vay ở đâu?",
+            "source_url": "https://www.msb.com.vn/msb_faq/sau-khi-msb-giai-ngan-khach-hang-theo-doi-khoan-vay-o-dau/",
+            "predicted_intent": "card_arrival",
+            "confidence": 0.8407030806108889
+          },
+          {
+            "source_case_id": "faq_real:065",
+            "source_group_id": "url:005",
+            "topic": "INTEREST_RATE",
+            "text": "Lãi suất gửi tiết kiệm tại ngân hàng hiện được tra cứu như thế nào?",
+            "text_original": "Lãi suất gửi tiết kiệm Techcombank hiện được tra cứu như thế nào?",
+            "source_url": "https://techcombank.com/khach-hang-ca-nhan/tiet-kiem",
+            "predicted_intent": "exchange_rate",
+            "confidence": 0.8253805822439175
+          },
+          {
+            "source_case_id": "faq_real:067",
+            "source_group_id": "url:013",
+            "topic": "INTEREST_RATE",
+            "text": "Lãi suất vay ngân hàng thường được tính theo dư nợ giảm dần như thế nào?",
+            "text_original": "Lãi suất vay ngân hàng thường được tính theo dư nợ giảm dần như thế nào?",
+            "source_url": "https://techcombank.com/thong-tin/blog/lai-suat-vay-ngan-hang",
+            "predicted_intent": "exchange_rate",
+            "confidence": 0.7855275863692739
+          },
+          {
+            "source_case_id": "faq_real:028",
+            "source_group_id": "url:005",
+            "topic": "SAVING",
+            "text": "Số tiền tối thiểu để mở tài khoản tiết kiệm tại ngân hàng là bao nhiêu?",
+            "text_original": "Số tiền tối thiểu để mở tài khoản tiết kiệm tại Techcombank là bao nhiêu?",
+            "source_url": "https://techcombank.com/khach-hang-ca-nhan/tiet-kiem",
+            "predicted_intent": "age_limit",
+            "confidence": 0.7748104992697202
+          },
+          {
+            "source_case_id": "faq_real:068",
+            "source_group_id": "url:013",
+            "topic": "INTEREST_RATE",
+            "text": "Lãi suất vay ngân hàng có thể được tính theo dư nợ ban đầu như thế nào?",
+            "text_original": "Lãi suất vay ngân hàng có thể được tính theo dư nợ ban đầu như thế nào?",
+            "source_url": "https://techcombank.com/thong-tin/blog/lai-suat-vay-ngan-hang",
+            "predicted_intent": "exchange_rate",
+            "confidence": 0.6980270862925386
+          },
+          {
+            "source_case_id": "faq_real:033",
+            "source_group_id": "url:001",
+            "topic": "SAVING",
+            "text": "Tiền gửi có kỳ hạn và tiền gửi không kỳ hạn của doanh nghiệp khác nhau ra sao?",
+            "text_original": "Tiền gửi có kỳ hạn và tiền gửi không kỳ hạn của doanh nghiệp khác nhau ra sao?",
+            "source_url": "https://acb.com.vn/thu-vien/cac-cau-hoi-thuong-gap-khi-doanh-nghiep-gui-tien-co-ky-han",
+            "predicted_intent": "balance_not_updated_after_cheque_or_cash_deposit",
+            "confidence": 0.5291503181976307
+          },
+          {
+            "source_case_id": "faq_real:081",
+            "source_group_id": "url:005",
+            "topic": "PROMOTION",
+            "text": "Happy Monday của ngân hàng có ưu đãi gì cho khoản tiền gửi mở mới?",
+            "text_original": "Happy Monday của Techcombank có ưu đãi gì cho khoản tiền gửi mở mới?",
+            "source_url": "https://techcombank.com/khach-hang-ca-nhan/tiet-kiem",
+            "predicted_intent": "balance_not_updated_after_cheque_or_cash_deposit",
+            "confidence": 0.4396197911243975
+          },
+          {
+            "source_case_id": "faq_real:012",
+            "source_group_id": "url:030",
+            "topic": "LOAN",
+            "text": "Khách hàng của ngân hàng có thể trả nợ trước hạn hay không và có mất phí không?",
+            "text_original": "Khách hàng MSB có thể trả nợ trước hạn hay không và có mất phí không?",
+            "source_url": "https://www.msb.com.vn/msb_faq/toi-co-the-tra-no-khoan-vay-truoc-han-khong-neu-no-truoc-han-toi-co-bi-tinh-phi-khong/",
+            "predicted_intent": "request_refund",
+            "confidence": 0.4327908755301093
+          },
+          {
+            "source_case_id": "faq_real:032",
+            "source_group_id": "url:001",
+            "topic": "SAVING",
+            "text": "Doanh nghiệp có những hình thức gửi tiền nào tại ngân hàng?",
+            "text_original": "Doanh nghiệp có những hình thức gửi tiền nào tại ACB?",
+            "source_url": "https://acb.com.vn/thu-vien/cac-cau-hoi-thuong-gap-khi-doanh-nghiep-gui-tien-co-ky-han",
+            "predicted_intent": "top_up_by_cash_or_cheque",
+            "confidence": 0.41386602259276445
+          }
+        ]
+      },
+      "test": {
+        "samples": 50,
+        "source_pages": 22,
+        "auroc": 0.9603195962994112,
+        "auprc": 0.5592964068060026,
+        "ood_unknown_recall": 0.74,
+        "in_domain_false_rejection_rate": 0.03784693019343986,
+        "ood_unknown_recall_cluster_ci95": [
+          0.6216113841113841,
+          0.8611111111111112
+        ],
+        "topics": {
+          "INTEREST_RATE": {
+            "count": 13,
+            "unknown_recall": 0.6153846153846154
+          },
+          "LOAN": {
+            "count": 12,
+            "unknown_recall": 0.75
+          },
+          "PROMOTION": {
+            "count": 12,
+            "unknown_recall": 0.6666666666666666
+          },
+          "SAVING": {
+            "count": 13,
+            "unknown_recall": 0.9230769230769231
+          }
+        },
+        "accepted_as_known_examples": [
+          {
+            "source_case_id": "faq_real:060",
+            "source_group_id": "url:040",
+            "topic": "INTEREST_RATE",
+            "text": "Lãi suất sau ưu đãi của khoản vay được xác định như thế nào?",
+            "text_original": "Lãi suất sau ưu đãi của khoản vay được xác định như thế nào?",
+            "source_url": "https://www.vib.com.vn/vn/cam-nang/vay/vay-the-chap/mot-so-cau-hoi-ve-lai-suat",
+            "predicted_intent": "exchange_rate",
+            "confidence": 0.8958135821854138
+          },
+          {
+            "source_case_id": "faq_real:053",
+            "source_group_id": "url:002",
+            "topic": "INTEREST_RATE",
+            "text": "Lãi suất tiết kiệm không kỳ hạn được hiểu như thế nào?",
+            "text_original": "Lãi suất tiết kiệm không kỳ hạn được hiểu như thế nào?",
+            "source_url": "https://acb.com.vn/thu-vien/giai-dap-cac-cau-hoi-thuong-gap-ve-lai-suat-tiet-kiem-cho-nguoi-moi",
+            "predicted_intent": "exchange_rate",
+            "confidence": 0.8804323439671805
+          },
+          {
+            "source_case_id": "faq_real:074",
+            "source_group_id": "url:044",
+            "topic": "INTEREST_RATE",
+            "text": "Lãi suất thẻ UnionPay FreeWays là bao nhiêu?",
+            "text_original": "Lãi suất thẻ VPBank UnionPay FreeWays là bao nhiêu?",
+            "source_url": "https://www.vpbank.com.vn/i/the-unionpay",
+            "predicted_intent": "exchange_rate",
+            "confidence": 0.7525745560237875
+          },
+          {
+            "source_case_id": "faq_real:007",
+            "source_group_id": "url:011",
+            "topic": "LOAN",
+            "text": "Tài khoản thấu chi MyCash của ngân hàng là gì?",
+            "text_original": "Tài khoản thấu chi MyCash của Techcombank là gì?",
+            "source_url": "https://techcombank.com/khach-hang-ca-nhan/vay/vay-tieu-dung/mycash",
+            "predicted_intent": "transfer_into_account",
+            "confidence": 0.6653909294407151
+          },
+          {
+            "source_case_id": "faq_real:004",
+            "source_group_id": "url:010",
+            "topic": "LOAN",
+            "text": "Khi vay mua ô tô tại ngân hàng, khách hàng có bắt buộc mua bảo hiểm cho xe không?",
+            "text_original": "Khi vay mua ô tô tại Techcombank, khách hàng có bắt buộc mua bảo hiểm cho xe không?",
+            "source_url": "https://techcombank.com/khach-hang-ca-nhan/vay/vay-mua-o-to",
+            "predicted_intent": "request_refund",
+            "confidence": 0.5967388137889003
+          },
+          {
+            "source_case_id": "faq_real:095",
+            "source_group_id": "url:044",
+            "topic": "PROMOTION",
+            "text": "Khách hàng mở mới thẻ UnionPay FreeWays có ưu đãi hoàn tiền nào?",
+            "text_original": "Khách hàng mở mới thẻ VPBank UnionPay FreeWays có ưu đãi hoàn tiền nào?",
+            "source_url": "https://www.vpbank.com.vn/i/the-unionpay",
+            "predicted_intent": "request_refund",
+            "confidence": 0.5952474006613031
+          },
+          {
+            "source_case_id": "faq_real:084",
+            "source_group_id": "url:022",
+            "topic": "PROMOTION",
+            "text": "Chủ thẻ tín dụng được hưởng những loại ưu đãi nào?",
+            "text_original": "Chủ thẻ tín dụng MSB được hưởng những loại ưu đãi nào?",
+            "source_url": "https://www.msb.com.vn/msb_faq/chu-the-tin-dung-msb-duoc-huong-nhung-uu-dai-gi/",
+            "predicted_intent": "supported_cards_and_currencies",
+            "confidence": 0.5919790923728139
+          },
+          {
+            "source_case_id": "faq_real:090",
+            "source_group_id": "url:042",
+            "topic": "PROMOTION",
+            "text": "Khi dùng thẻ MWG, bao giờ khách hàng nhận được tiền hoàn từ chi tiêu?",
+            "text_original": "Khi dùng thẻ VPBank MWG, bao giờ khách hàng nhận được tiền hoàn từ chi tiêu?",
+            "source_url": "https://www.vpbank.com.vn/i/the-mwg",
+            "predicted_intent": "Refund_not_showing_up",
+            "confidence": 0.5705486500382131
+          },
+          {
+            "source_case_id": "faq_real:058",
+            "source_group_id": "url:040",
+            "topic": "INTEREST_RATE",
+            "text": "Lãi suất vay là gì?",
+            "text_original": "Lãi suất vay là gì?",
+            "source_url": "https://www.vib.com.vn/vn/cam-nang/vay/vay-the-chap/mot-so-cau-hoi-ve-lai-suat",
+            "predicted_intent": "exchange_rate",
+            "confidence": 0.5609268302040159
+          },
+          {
+            "source_case_id": "faq_real:030",
+            "source_group_id": "url:008",
+            "topic": "SAVING",
+            "text": "Có thể gửi thêm tiền vào khoản Tiền gửi rút gốc linh hoạt của ngân hàng không?",
+            "text_original": "Có thể gửi thêm tiền vào khoản Tiền gửi rút gốc linh hoạt của Techcombank không?",
+            "source_url": "https://techcombank.com/khach-hang-ca-nhan/tiet-kiem/tiet-kiem-linh-hoat/tien-gui-rut-goc-linh-hoat",
+            "predicted_intent": "transfer_into_account",
+            "confidence": 0.49837222446329954
+          },
+          {
+            "source_case_id": "faq_real:051",
+            "source_group_id": "url:002",
+            "topic": "INTEREST_RATE",
+            "text": "Lãi suất gửi tiết kiệm là gì?",
+            "text_original": "Lãi suất gửi tiết kiệm là gì?",
+            "source_url": "https://acb.com.vn/thu-vien/giai-dap-cac-cau-hoi-thuong-gap-ve-lai-suat-tiet-kiem-cho-nguoi-moi",
+            "predicted_intent": "exchange_rate",
+            "confidence": 0.4906128429794152
+          },
+          {
+            "source_case_id": "faq_real:093",
+            "source_group_id": "url:045",
+            "topic": "PROMOTION",
+            "text": "Điểm thưởng của thẻ YOJO được đổi như thế nào?",
+            "text_original": "Điểm thưởng của thẻ VPBank YOJO được đổi như thế nào?",
+            "source_url": "https://www.vpbank.com.vn/i/the-vietjet",
+            "predicted_intent": "exchange_rate",
+            "confidence": 0.48840578723862127
+          }
+        ]
+      }
+    },
+    "deep": {
+      "validation": {
+        "samples": 50,
+        "source_pages": 23,
+        "auroc": 0.9478439869989166,
+        "auprc": 0.46532222059857375,
+        "ood_unknown_recall": 0.68,
+        "in_domain_false_rejection_rate": 0.04983748645720477,
+        "ood_unknown_recall_cluster_ci95": [
+          0.5471269296740995,
+          0.8333333333333334
+        ],
+        "topics": {
+          "INTEREST_RATE": {
+            "count": 12,
+            "unknown_recall": 0.5
+          },
+          "LOAN": {
+            "count": 13,
+            "unknown_recall": 0.7692307692307693
+          },
+          "PROMOTION": {
+            "count": 13,
+            "unknown_recall": 0.8461538461538461
+          },
+          "SAVING": {
+            "count": 12,
+            "unknown_recall": 0.5833333333333334
+          }
+        },
+        "accepted_as_known_examples": [
+          {
+            "source_case_id": "faq_real:010",
+            "source_group_id": "url:020",
+            "topic": "LOAN",
+            "text": "Vay kinh doanh từng lần tại ngân hàng là gì?",
+            "text_original": "Vay kinh doanh từng lần tại MSB là gì?",
+            "source_url": "https://www.msb.com.vn/khach-hang-ca-nhan/vay/",
+            "predicted_intent": "transaction_charged_twice",
+            "confidence": 0.8776302569742629
+          },
+          {
+            "source_case_id": "faq_real:067",
+            "source_group_id": "url:013",
+            "topic": "INTEREST_RATE",
+            "text": "Lãi suất vay ngân hàng thường được tính theo dư nợ giảm dần như thế nào?",
+            "text_original": "Lãi suất vay ngân hàng thường được tính theo dư nợ giảm dần như thế nào?",
+            "source_url": "https://techcombank.com/thong-tin/blog/lai-suat-vay-ngan-hang",
+            "predicted_intent": "wrong_exchange_rate_for_cash_withdrawal",
+            "confidence": 0.8354867421402403
+          },
+          {
+            "source_case_id": "faq_real:034",
+            "source_group_id": "url:001",
+            "topic": "SAVING",
+            "text": "Doanh nghiệp có thể rút tiền trước hạn đối với khoản tiền gửi có kỳ hạn không?",
+            "text_original": "Doanh nghiệp có thể rút tiền trước hạn đối với khoản tiền gửi có kỳ hạn không?",
+            "source_url": "https://acb.com.vn/thu-vien/cac-cau-hoi-thuong-gap-khi-doanh-nghiep-gui-tien-co-ky-han",
+            "predicted_intent": "pending_cash_withdrawal",
+            "confidence": 0.8324572905733609
+          },
+          {
+            "source_case_id": "faq_real:012",
+            "source_group_id": "url:030",
+            "topic": "LOAN",
+            "text": "Khách hàng của ngân hàng có thể trả nợ trước hạn hay không và có mất phí không?",
+            "text_original": "Khách hàng MSB có thể trả nợ trước hạn hay không và có mất phí không?",
+            "source_url": "https://www.msb.com.vn/msb_faq/toi-co-the-tra-no-khoan-vay-truoc-han-khong-neu-no-truoc-han-toi-co-bi-tinh-phi-khong/",
+            "predicted_intent": "transfer_fee_charged",
+            "confidence": 0.8088649195549898
+          },
+          {
+            "source_case_id": "faq_real:032",
+            "source_group_id": "url:001",
+            "topic": "SAVING",
+            "text": "Doanh nghiệp có những hình thức gửi tiền nào tại ngân hàng?",
+            "text_original": "Doanh nghiệp có những hình thức gửi tiền nào tại ACB?",
+            "source_url": "https://acb.com.vn/thu-vien/cac-cau-hoi-thuong-gap-khi-doanh-nghiep-gui-tien-co-ky-han",
+            "predicted_intent": "transfer_into_account",
+            "confidence": 0.8057709126195357
+          },
+          {
+            "source_case_id": "faq_real:077",
+            "source_group_id": "url:005",
+            "topic": "PROMOTION",
+            "text": "Ngân hàng có chương trình cộng thêm lãi suất ngoài mức niêm yết không?",
+            "text_original": "Techcombank có chương trình cộng thêm lãi suất ngoài mức niêm yết không?",
+            "source_url": "https://techcombank.com/khach-hang-ca-nhan/tiet-kiem",
+            "predicted_intent": "wrong_exchange_rate_for_cash_withdrawal",
+            "confidence": 0.7404730135358634
+          },
+          {
+            "source_case_id": "faq_real:068",
+            "source_group_id": "url:013",
+            "topic": "INTEREST_RATE",
+            "text": "Lãi suất vay ngân hàng có thể được tính theo dư nợ ban đầu như thế nào?",
+            "text_original": "Lãi suất vay ngân hàng có thể được tính theo dư nợ ban đầu như thế nào?",
+            "source_url": "https://techcombank.com/thong-tin/blog/lai-suat-vay-ngan-hang",
+            "predicted_intent": "wrong_exchange_rate_for_cash_withdrawal",
+            "confidence": 0.714775969667405
+          },
+          {
+            "source_case_id": "faq_real:078",
+            "source_group_id": "url:005",
+            "topic": "PROMOTION",
+            "text": "Ưu đãi cho khoản tiền gửi đầu tiên tại ngân hàng được áp dụng như thế nào?",
+            "text_original": "Ưu đãi cho khoản tiền gửi đầu tiên tại Techcombank được áp dụng như thế nào?",
+            "source_url": "https://techcombank.com/khach-hang-ca-nhan/tiet-kiem",
+            "predicted_intent": "balance_not_updated_after_cheque_or_cash_deposit",
+            "confidence": 0.6719870683218666
+          },
+          {
+            "source_case_id": "faq_real:003",
+            "source_group_id": "url:012",
+            "topic": "LOAN",
+            "text": "Quy trình đăng ký vay tiêu dùng có tài sản bảo đảm tại ngân hàng gồm những bước nào?",
+            "text_original": "Quy trình đăng ký vay tiêu dùng có tài sản bảo đảm tại Techcombank gồm những bước nào?",
+            "source_url": "https://techcombank.com/khach-hang-ca-nhan/vay/vay-tieu-dung/vay-tieu-dung-the-chap-linh-hoat",
+            "predicted_intent": "transfer_into_account",
+            "confidence": 0.6452124678985538
+          },
+          {
+            "source_case_id": "faq_real:056",
+            "source_group_id": "url:001",
+            "topic": "INTEREST_RATE",
+            "text": "Lãi suất tiền gửi doanh nghiệp tại ngân hàng được tính theo công thức nào?",
+            "text_original": "Lãi suất tiền gửi doanh nghiệp tại ACB được tính theo công thức nào?",
+            "source_url": "https://acb.com.vn/thu-vien/cac-cau-hoi-thuong-gap-khi-doanh-nghiep-gui-tien-co-ky-han",
+            "predicted_intent": "exchange_rate",
+            "confidence": 0.6449505985990928
+          },
+          {
+            "source_case_id": "faq_real:044",
+            "source_group_id": "url:019",
+            "topic": "SAVING",
+            "text": "Nếu rút trước hạn sản phẩm tiết kiệm trả lãi ngay, khách hàng được hưởng lãi thế nào?",
+            "text_original": "Nếu rút trước hạn sản phẩm tiết kiệm trả lãi ngay, khách hàng được hưởng lãi thế nào?",
+            "source_url": "https://www.msb.com.vn/khach-hang-ca-nhan/tiet-kiem/tiet-kiem-tra-lai-ngay/",
+            "predicted_intent": "cash_withdrawal_charge",
+            "confidence": 0.6273941520665267
+          },
+          {
+            "source_case_id": "faq_real:043",
+            "source_group_id": "url:019",
+            "topic": "SAVING",
+            "text": "Khi gửi tiết kiệm trả lãi ngay, tiền lãi được nhận vào thời điểm nào?",
+            "text_original": "Khi gửi tiết kiệm trả lãi ngay, tiền lãi được nhận vào thời điểm nào?",
+            "source_url": "https://www.msb.com.vn/khach-hang-ca-nhan/tiet-kiem/tiet-kiem-tra-lai-ngay/",
+            "predicted_intent": "transfer_fee_charged",
+            "confidence": 0.6230075576008275
+          }
+        ]
+      },
+      "test": {
+        "samples": 50,
+        "source_pages": 22,
+        "auroc": 0.9546425567703953,
+        "auprc": 0.37475855456465856,
+        "ood_unknown_recall": 0.64,
+        "in_domain_false_rejection_rate": 0.04163162321278385,
+        "ood_unknown_recall_cluster_ci95": [
+          0.48214285714285715,
+          0.8205357142857144
+        ],
+        "topics": {
+          "INTEREST_RATE": {
+            "count": 13,
+            "unknown_recall": 0.3076923076923077
+          },
+          "LOAN": {
+            "count": 12,
+            "unknown_recall": 0.75
+          },
+          "PROMOTION": {
+            "count": 12,
+            "unknown_recall": 1.0
+          },
+          "SAVING": {
+            "count": 13,
+            "unknown_recall": 0.5384615384615384
+          }
+        },
+        "accepted_as_known_examples": [
+          {
+            "source_case_id": "faq_real:052",
+            "source_group_id": "url:002",
+            "topic": "INTEREST_RATE",
+            "text": "Lãi suất tiết kiệm có kỳ hạn là gì?",
+            "text_original": "Lãi suất tiết kiệm có kỳ hạn là gì?",
+            "source_url": "https://acb.com.vn/thu-vien/giai-dap-cac-cau-hoi-thuong-gap-ve-lai-suat-tiet-kiem-cho-nguoi-moi",
+            "predicted_intent": "exchange_rate",
+            "confidence": 0.9504055541158175
+          },
+          {
+            "source_case_id": "faq_real:053",
+            "source_group_id": "url:002",
+            "topic": "INTEREST_RATE",
+            "text": "Lãi suất tiết kiệm không kỳ hạn được hiểu như thế nào?",
+            "text_original": "Lãi suất tiết kiệm không kỳ hạn được hiểu như thế nào?",
+            "source_url": "https://acb.com.vn/thu-vien/giai-dap-cac-cau-hoi-thuong-gap-ve-lai-suat-tiet-kiem-cho-nguoi-moi",
+            "predicted_intent": "exchange_rate",
+            "confidence": 0.9039681801294362
+          },
+          {
+            "source_case_id": "faq_real:023",
+            "source_group_id": "url:015",
+            "topic": "LOAN",
+            "text": "Kỳ hạn vay tín chấp online tại ngân hàng có thể kéo dài tối đa bao lâu?",
+            "text_original": "Kỳ hạn vay tín chấp online tại VPBank có thể kéo dài tối đa bao lâu?",
+            "source_url": "https://vayonline.vpbank.com.vn/",
+            "predicted_intent": "pending_transfer",
+            "confidence": 0.8217019677697324
+          },
+          {
+            "source_case_id": "faq_real:058",
+            "source_group_id": "url:040",
+            "topic": "INTEREST_RATE",
+            "text": "Lãi suất vay là gì?",
+            "text_original": "Lãi suất vay là gì?",
+            "source_url": "https://www.vib.com.vn/vn/cam-nang/vay/vay-the-chap/mot-so-cau-hoi-ve-lai-suat",
+            "predicted_intent": "exchange_rate",
+            "confidence": 0.785563837083102
+          },
+          {
+            "source_case_id": "faq_real:062",
+            "source_group_id": "url:040",
+            "topic": "INTEREST_RATE",
+            "text": "Khi lãi suất thay đổi, số tiền phải trả của khoản vay có bị ảnh hưởng không?",
+            "text_original": "Khi lãi suất thay đổi, số tiền phải trả của khoản vay có bị ảnh hưởng không?",
+            "source_url": "https://www.vib.com.vn/vn/cam-nang/vay/vay-the-chap/mot-so-cau-hoi-ve-lai-suat",
+            "predicted_intent": "wrong_exchange_rate_for_cash_withdrawal",
+            "confidence": 0.7526157274069866
+          },
+          {
+            "source_case_id": "faq_real:035",
+            "source_group_id": "url:037",
+            "topic": "SAVING",
+            "text": "Tiết kiệm online là gì và khác gì so với gửi tại quầy?",
+            "text_original": "Tiết kiệm online là gì và khác gì so với gửi tại quầy?",
+            "source_url": "https://www.msb.com.vn/ve-chung-toi/tin-tuc-va-su-kien/kien-thuc-xu-huong/so-tiet-kiem-online-la-gi-uu-dai-gui-truc-tuyen-msb/",
+            "predicted_intent": "automatic_top_up",
+            "confidence": 0.7381921708700204
+          },
+          {
+            "source_case_id": "faq_real:047",
+            "source_group_id": "url:033",
+            "topic": "SAVING",
+            "text": "Tiết kiệm rút gốc từng phần có ưu điểm gì?",
+            "text_original": "Tiết kiệm rút gốc từng phần có ưu điểm gì?",
+            "source_url": "https://www.msb.com.vn/ve-chung-toi/tin-tuc-va-su-kien/kien-thuc-xu-huong/cac-loai-tiet-kiem-pho-bien-va-cach-chon-phu-hop/",
+            "predicted_intent": "cash_withdrawal_charge",
+            "confidence": 0.7325671457203592
+          },
+          {
+            "source_case_id": "faq_real:051",
+            "source_group_id": "url:002",
+            "topic": "INTEREST_RATE",
+            "text": "Lãi suất gửi tiết kiệm là gì?",
+            "text_original": "Lãi suất gửi tiết kiệm là gì?",
+            "source_url": "https://acb.com.vn/thu-vien/giai-dap-cac-cau-hoi-thuong-gap-ve-lai-suat-tiet-kiem-cho-nguoi-moi",
+            "predicted_intent": "exchange_rate",
+            "confidence": 0.6811778956564772
+          },
+          {
+            "source_case_id": "faq_real:049",
+            "source_group_id": "url:035",
+            "topic": "SAVING",
+            "text": "Khi mở sổ tiết kiệm online tại ngân hàng, khách hàng thực hiện những bước nào?",
+            "text_original": "Khi mở sổ tiết kiệm online MSB, khách hàng thực hiện những bước nào?",
+            "source_url": "https://www.msb.com.vn/ve-chung-toi/tin-tuc-va-su-kien/kien-thuc-xu-huong/huong-dan-mo-so-tiet-kiem-online-msb/",
+            "predicted_intent": "automatic_top_up",
+            "confidence": 0.6740133062254883
+          },
+          {
+            "source_case_id": "faq_real:054",
+            "source_group_id": "url:002",
+            "topic": "INTEREST_RATE",
+            "text": "Những yếu tố nào thường ảnh hưởng đến lãi suất tiết kiệm?",
+            "text_original": "Những yếu tố nào thường ảnh hưởng đến lãi suất tiết kiệm?",
+            "source_url": "https://acb.com.vn/thu-vien/giai-dap-cac-cau-hoi-thuong-gap-ve-lai-suat-tiet-kiem-cho-nguoi-moi",
+            "predicted_intent": "exchange_rate",
+            "confidence": 0.6255572880262241
+          },
+          {
+            "source_case_id": "faq_real:055",
+            "source_group_id": "url:002",
+            "topic": "INTEREST_RATE",
+            "text": "Cách tính tiền lãi gửi tiết kiệm chính xác như thế nào?",
+            "text_original": "Cách tính tiền lãi gửi tiết kiệm chính xác như thế nào?",
+            "source_url": "https://acb.com.vn/thu-vien/giai-dap-cac-cau-hoi-thuong-gap-ve-lai-suat-tiet-kiem-cho-nguoi-moi",
+            "predicted_intent": "exchange_rate",
+            "confidence": 0.5884177014707107
+          },
+          {
+            "source_case_id": "faq_real:011",
+            "source_group_id": "url:029",
+            "topic": "LOAN",
+            "text": "Thời hạn tối đa của một khoản vay tại ngân hàng là bao lâu?",
+            "text_original": "Thời hạn tối đa của một khoản vay MSB là bao lâu?",
+            "source_url": "https://www.msb.com.vn/msb_faq/thoi-han-cua-khoan-vay-la-bao-lau/",
+            "predicted_intent": "transfer_timing",
+            "confidence": 0.5835437978064255
+          }
+        ]
+      }
+    }
+  }
+}

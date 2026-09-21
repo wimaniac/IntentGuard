@@ -9,7 +9,7 @@ Nguồn số liệu: `reports/comparison.json` trên test Banking77-VN, MASSIVE 
 | TF-IDF + Logistic Regression | 0,8939 | 0,9697 | 0,8999 | 0,7400 |
 | Multilingual MiniLM + classifier | 0,8832 | 0,9617 | 0,7180 | 0,6400 |
 
-FAQ test có 50 câu từ 22 URL nguồn; toàn bộ 100 câu gồm 45 URL và không có câu do LLM sinh. Người dùng xác nhận URL, Codex AI rà cả 100 nhãn OOD theo 77 intent, thu gọn hai câu nhiều vế và ghi ba cặp gần trùng ngữ nghĩa. Khoảng bootstrap theo URL của recall test là [0,6216; 0,8611] cho baseline và [0,4821; 0,8205] cho DL. Đây chưa phải bộ nhãn vàng do hai người độc lập; FAQ vẫn có văn phong khác tin nhắn khách hàng thật.
+FAQ test có 50 câu từ 22 URL nguồn; toàn bộ 100 câu gồm 45 URL. Người dùng xác nhận URL, Codex AI rà cả 100 nhãn OOD theo 77 intent, thu gọn hai câu nhiều vế và ghi ba cặp gần trùng ngữ nghĩa. Khoảng bootstrap theo URL của recall test là [0,6216; 0,8611] cho baseline và [0,4821; 0,8205] cho DL. Đây chưa phải bộ nhãn vàng do hai người độc lập; FAQ vẫn có văn phong khác tin nhắn khách hàng thật.
 
 ## Các nhóm lỗi phân loại thường gặp
 

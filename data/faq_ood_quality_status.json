@@ -1,0 +1,17 @@
+{
+  "status": "faq_ai_reviewed",
+  "reason": "Người dùng xác nhận URL; Codex AI rà 100 câu với 77 intent, thu gọn hai câu nhiều vế và ghi ba cặp gần trùng; chưa là nhãn vàng do hai người gán nhãn độc lập",
+  "metric_decision": "include_with_provenance",
+  "faq_source_file": "data/raw/vietnam_banks_faq_100.csv",
+  "faq_processed_dir": "data/processed/faq_ood_real",
+  "faq_label_audit_file": "reports/faq_ood_label_audit.csv",
+  "faq_candidate_count": 100,
+  "faq_curated_count": 100,
+  "faq_source_urls": 45,
+  "faq_bank_name_normalized_count": 67,
+  "faq_original_multi_issue_rewrites": 2,
+  "faq_semantic_duplicate_followups": 3,
+  "faq_url_confirmed_by_user": true,
+  "faq_label_reviewed_by_codex_ai": true,
+  "faq_two_human_gold_verified": false
+}

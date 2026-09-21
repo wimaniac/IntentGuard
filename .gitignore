@@ -8,7 +8,7 @@ __pycache__/
 .env
 *.py[cod]
 
-# Du lieu va artifact tai xuong/sinh ra, khong dua vao source control.
+# Dữ liệu và artifact tải xuống hoặc sinh ra không đưa vào source control.
 data/raw/*
 data/interim/*
 data/processed/*
@@ -16,17 +16,18 @@ data/artifacts/*
 data/experiments/
 data/hf_cache/
 data/logs/
-reports/*.json
-reports/*.csv
-reports/*.md
-!data/raw/.gitkeep
-!data/raw/*.template
+reports/*
+
+# Dữ liệu nguồn, artifact baseline cho demo cloud và báo cáo cuối.
 !data/raw/vietnam_banks_faq_100.csv
-!data/interim/.gitkeep
-!data/processed/.gitkeep
-!data/artifacts/.gitkeep
 !data/artifacts/baseline.joblib
 !data/artifacts/baseline.json
 !data/artifacts/calibration_baseline.json
 !data/artifacts/train_cases.parquet
-!reports/*.md
+!reports/comparison.md
+!reports/comparison.json
+!reports/error_analysis.md
+!reports/faq_ood_diagnostic.md
+!reports/faq_ood_diagnostic.json
+!reports/faq_ood_label_audit.md
+!reports/faq_ood_label_audit.csv

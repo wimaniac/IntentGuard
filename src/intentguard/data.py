@@ -16,7 +16,6 @@ from huggingface_hub import hf_hub_download
 from sklearn.model_selection import train_test_split
 
 from intentguard.config import dump_json
-from intentguard.review import duplicate_groups, validate_approved_rows
 from intentguard.schemas import DatasetBundle
 
 
@@ -224,8 +223,6 @@ def load_processed_bundle(dataset_dir: str | Path) -> DatasetBundle:
     """
     directory = Path(dataset_dir)
     with (directory / "metadata.json").open("r", encoding="utf-8") as file:
-        import json
-
         metadata = json.load(file)
     frames = {
         name: pd.read_parquet(directory / f"{name}.parquet")
@@ -308,123 +305,3 @@ def _load_massive_scenario_names(config: dict[str, Any]) -> list[str]:
             if isinstance(value, list) and all(isinstance(item, str) for item in value):
                 return value
     raise ValueError("Không đọc được _SCENARIOS từ script MASSIVE nguồn")
-
-
-def build_bank_ood_candidates(config: dict[str, Any], paths: dict[str, Path]) -> pd.DataFrame:
-    """Tải nguồn tham khảo UTS2017_Bank để review, không tự gán nhãn.
-
-    Args:
-        config: Toàn bộ cấu hình project.
-        paths: Đường dẫn project đã chuẩn hoá.
-
-    Returns:
-        DataFrame candidate với text và metadata nguồn; không được dùng để train.
-    """
-    source = config["data"]["ood"]["candidate_source"]
-    records: list[pd.DataFrame] = []
-    for split in source["splits"]:
-        if source.get("format") == "jsonl":
-            file_path = hf_hub_download(
-                repo_id=source["name"],
-                filename=source["files"][split],
-                revision=source.get("revision"),
-                repo_type="dataset",
-            )
-            frame = pd.read_json(file_path, lines=True)
-        else:
-            kwargs = {"path": source["name"], "split": split}
-            if source.get("config"):
-                kwargs["name"] = source["config"]
-            frame = load_dataset(**kwargs).to_pandas()
-        text_column = _find_text_column(frame, source["text_column"])
-        selected = pd.DataFrame({"text": frame[text_column].map(normalize_text)})
-        selected["source_split"] = split
-        selected["source_row"] = np.arange(len(selected), dtype=int)
-        if source.get("topic_column") in frame.columns:
-            selected["source_topic"] = frame[source["topic_column"]].astype(str).to_numpy()
-        records.append(selected)
-    result = pd.concat(records, ignore_index=True).drop_duplicates("text")
-    output = paths["root"] / config["data"]["ood"]["bank_candidate_file"]
-    output.parent.mkdir(parents=True, exist_ok=True)
-    result.to_parquet(output, index=False)
-    return result
-
-
-def load_reviewed_bank_ood(config: dict[str, Any], paths: dict[str, Path]) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """Nạp 100 câu OOD ngân hàng đã review và tách validation/test theo case nguồn.
-
-    Args:
-        config: Toàn bộ cấu hình project.
-        paths: Đường dẫn project đã chuẩn hoá.
-
-    Returns:
-        Tuple ``(validation, test)`` gồm các câu được đánh dấu OOD.
-
-    Raises:
-        FileNotFoundError: Khi chưa cung cấp file review và danh sách case.
-        ValueError: Khi số lượng hoặc phân vùng không đúng cấu hình.
-    """
-    ood_config = config["data"]["ood"]
-    quality_path = paths["root"] / ood_config.get("bank_quality_file", "data/ood_bank_quality_status.json")
-    if quality_path.exists():
-        quality = json.loads(quality_path.read_text(encoding="utf-8"))
-        if quality.get("status") != "verified":
-            raise FileNotFoundError("Tập OOD ngân hàng đang chờ kiểm tra chất lượng nhãn; không dùng split cũ")
-    review_path = paths["root"] / ood_config["bank_review_file"]
-    if not review_path.exists():
-        raise FileNotFoundError(
-            f"Chưa có file review OOD ngân hàng: {review_path}. Hãy duyệt trên app hoặc chạy CLI DeepSeek."
-        )
-    case_path = paths["root"] / ood_config["bank_validation_cases"]
-    test_case_path = paths["root"] / ood_config["bank_test_cases"]
-    if not case_path.exists() or not test_case_path.exists():
-        raise FileNotFoundError("Chưa xuất danh sách case OOD validation/test từ giao diện review")
-    frame = pd.read_csv(review_path, dtype=str, keep_default_na=False)
-    case_col = ood_config["bank_source_case_column"]
-    candidate_path = paths["root"] / ood_config["bank_candidate_file"]
-    candidates = pd.read_parquet(candidate_path)
-    domain_dir = paths["processed"] / "in_domain"
-    domain_texts = [
-        text
-        for name in ("train", "model_selection", "calibration", "threshold", "test")
-        for text in pd.read_parquet(domain_dir / f"{name}.parquet", columns=["text"])["text"].astype(str)
-    ]
-    review_config = ood_config["review"]
-    approved, source_texts = validate_approved_rows(
-        frame,
-        candidates,
-        domain_texts,
-        int(ood_config["expected_total"]),
-        int(review_config["min_length"]),
-        int(review_config["max_length"]),
-    )
-    approved["text"] = approved["text"].map(normalize_text)
-    validation_cases = _read_case_ids(case_path)
-    test_cases = _read_case_ids(test_case_path)
-    if validation_cases & test_cases or len(validation_cases) != int(ood_config["expected_per_split"]):
-        raise ValueError("Danh sách source_case_id validation/test phải tách biệt và đủ số lượng")
-    validation = approved[approved[case_col].astype(str).isin(validation_cases)].copy()
-    test = approved[approved[case_col].astype(str).isin(test_cases)].copy()
-    if len(validation) != int(ood_config["expected_per_split"]) or len(test) != int(ood_config["expected_per_split"]):
-        raise ValueError("Validation/test OOD ngân hàng phải đạt số lượng cấu hình")
-    approved_ids = approved[case_col].astype(str).tolist()
-    groups = duplicate_groups(approved["text"].tolist(), [source_texts[case_id] for case_id in approved_ids])
-    split_by_group: dict[int, set[str]] = {}
-    for case_id, group in zip(approved_ids, groups, strict=True):
-        split_by_group.setdefault(group, set()).add("validation" if case_id in validation_cases else "test")
-    if any(len(splits) > 1 for splits in split_by_group.values()):
-        raise ValueError("Câu gần trùng hoặc cùng trường hợp nguồn bị tách giữa validation và test")
-    for split, split_frame in [("validation", validation), ("test", test)]:
-        split_frame["ood_source"] = f"bank_review:{split}"
-        split_frame.to_parquet(paths["processed"] / f"ood_bank_{split}.parquet", index=False)
-    return validation, test
-
-
-def _read_case_ids(path: Path) -> set[str]:
-    if not path.exists():
-        raise FileNotFoundError(f"Chưa có danh sách case nguồn: {path}")
-    return {
-        line.strip()
-        for line in path.read_text(encoding="utf-8").splitlines()
-        if line.strip() and not line.startswith("#")
-    }

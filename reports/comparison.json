@@ -1,0 +1,1327 @@
+{
+  "backends": {
+    "baseline": {
+      "temperature": 0.5772552175520678,
+      "threshold": 0.38791267133388896,
+      "calibration_before": {
+        "nll": 0.7055775414802508,
+        "ece": 0.2082247369812214
+      },
+      "calibration_after": {
+        "nll": 0.49703426943807816,
+        "ece": 0.017245806375120316
+      },
+      "test_calibrated": {
+        "accuracy": 0.8982338099243061,
+        "macro_f1": 0.8938604876418494,
+        "top_3_accuracy": 0.9697224558452481,
+        "nll": 0.3954512162106813,
+        "ece": 0.02219658543601594
+      },
+      "threshold_validation": {
+        "accuracy": 0.866738894907909,
+        "macro_f1": 0.8633316321447798,
+        "top_3_accuracy": 0.9566630552546046,
+        "nll": 0.47707306525620435,
+        "ece": 0.031692812344027294
+      },
+      "errors": {
+        "in_domain_rejected": [
+          {
+            "text": "vẫn đang chờ cái thẻ đó",
+            "true_intent": "card_arrival",
+            "top_intent": "pending_top_up",
+            "confidence": 0.3197836117990101
+          },
+          {
+            "text": "Tôi đã chờ thẻ ngân hàng lâu hơn dự kiến, bạn có thể cung cấp thông tin về thời gian đến hàng không?",
+            "true_intent": "card_arrival",
+            "top_intent": "balance_not_updated_after_bank_transfer",
+            "confidence": 0.25444205415972937
+          },
+          {
+            "text": "Đó có phải là thời điểm tốt để trao đổi không?",
+            "true_intent": "exchange_rate",
+            "top_intent": "exchange_charge",
+            "confidence": 0.29626106097999094
+          },
+          {
+            "text": "Có một khoản phí thêm trên ứng dụng của tôi mà tôi không được thông báo hoặc nhận thức về!",
+            "true_intent": "extra_charge_on_statement",
+            "top_intent": "extra_charge_on_statement",
+            "confidence": 0.35015939072736507
+          },
+          {
+            "text": "Đã hai tuần trôi qua, tại sao giao dịch $1.00 vẫn chưa được hủy bỏ?",
+            "true_intent": "extra_charge_on_statement",
+            "top_intent": "card_arrival",
+            "confidence": 0.2907776206869116
+          },
+          {
+            "text": "Phí 1 euro là cho việc gì?",
+            "true_intent": "extra_charge_on_statement",
+            "top_intent": "transfer_fee_charged",
+            "confidence": 0.27068900178855515
+          },
+          {
+            "text": "Giao dịch đang chờ là gì? Tôi đã bị từ chối thẻ tại một máy ATM, nhưng tài khoản của tôi lại hiển thị trạng thái \"đang chờ\". Tôi có thể hủy thanh toán này không?",
+            "true_intent": "pending_cash_withdrawal",
+            "top_intent": "pending_cash_withdrawal",
+            "confidence": 0.2709821421949381
+          },
+          {
+            "text": "Bạn có cung cấp thêm các tùy chọn tiền tệ khác không?",
+            "true_intent": "fiat_currency_support",
+            "top_intent": "fiat_currency_support",
+            "confidence": 0.3148902053519439
+          },
+          {
+            "text": "Làm thế nào để tôi chấp nhận các giao dịch từ EU?",
+            "true_intent": "fiat_currency_support",
+            "top_intent": "supported_cards_and_currencies",
+            "confidence": 0.3411727773105199
+          },
+          {
+            "text": "Tôi có thể tìm thấy tính năng \"auto-top\" ở đâu?",
+            "true_intent": "automatic_top_up",
+            "top_intent": "automatic_top_up",
+            "confidence": 0.26580583522470747
+          },
+          {
+            "text": "Bạn có thể giúp tôi xác định vấn đề với thẻ ngân hàng của tôi không?",
+            "true_intent": "card_not_working",
+            "top_intent": "card_not_working",
+            "confidence": 0.15544029034836884
+          },
+          {
+            "text": "Không có gì đi qua trên thẻ của tôi cả.",
+            "true_intent": "card_not_working",
+            "top_intent": "compromised_card",
+            "confidence": 0.23459430213411825
+          },
+          {
+            "text": "Tôi sẽ sử dụng tiền của mình như thế nào khi ở một quốc gia khác?",
+            "true_intent": "exchange_via_app",
+            "top_intent": "country_support",
+            "confidence": 0.28985427567372624
+          },
+          {
+            "text": "Tất cả đồ đạc trong túi tập gym của tôi, bao gồm cả ví, đã bị lấy cắp khỏi tủ khóa hôm nay. Tất cả mọi thứ trong ví của tôi đều mất hết - tôi phải làm sao để khóa thẻ và ngăn không cho người khác sử dụng nó?",
+            "true_intent": "lost_or_stolen_card",
+            "top_intent": "lost_or_stolen_card",
+            "confidence": 0.27088797814326554
+          },
+          {
+            "text": "Tôi nghi ngờ rằng thẻ của tôi đã bị đánh cắp, tôi nên làm gì trong tình huống này? Đây là một vấn đề cấp bách.",
+            "true_intent": "lost_or_stolen_card",
+            "top_intent": "compromised_card",
+            "confidence": 0.3799818946780051
+          },
+          {
+            "text": "Một bản sao của báo cáo cảnh sát có cần thiết để hoàn tất thủ tục báo cáo không?",
+            "true_intent": "lost_or_stolen_card",
+            "top_intent": "request_refund",
+            "confidence": 0.1265810828797963
+          },
+          {
+            "text": "Ai đó đã lấy ví của tôi vào lúc nào đó hôm nay, tôi không chắc chắn lắm, có lẽ là ở Piccadilly Circus. Bạn có thể kiểm tra xem có ai cố gắng sử dụng thẻ và tất nhiên là chặn nó ngay lập tức được không?",
+            "true_intent": "lost_or_stolen_card",
+            "top_intent": "compromised_card",
+            "confidence": 0.370585153796648
+          },
+          {
+            "text": "Tôi cần làm gì khi báo mất hoặc bị trộm thẻ?",
+            "true_intent": "lost_or_stolen_card",
+            "top_intent": "lost_or_stolen_card",
+            "confidence": 0.3243380886372447
+          },
+          {
+            "text": "Tôi cần giúp đỡ vì tôi say xỉn chặn thẻ của tôi?",
+            "true_intent": "pin_blocked",
+            "top_intent": "pin_blocked",
+            "confidence": 0.38569395144356294
+          },
+          {
+            "text": "Những giấy tờ cần thiết cho việc làm thẻ mới là gì?",
+            "true_intent": "contactless_not_working",
+            "top_intent": "verify_my_identity",
+            "confidence": 0.29241741716007513
+          }
+        ],
+        "confusion_pairs": [
+          {
+            "true_intent": "why_verify_identity",
+            "predicted_intent": "verify_my_identity",
+            "count": 6
+          },
+          {
+            "true_intent": "atm_support",
+            "predicted_intent": "declined_cash_withdrawal",
+            "count": 4
+          },
+          {
+            "true_intent": "card_arrival",
+            "predicted_intent": "card_delivery_estimate",
+            "count": 3
+          },
+          {
+            "true_intent": "fiat_currency_support",
+            "predicted_intent": "exchange_via_app",
+            "count": 3
+          },
+          {
+            "true_intent": "card_delivery_estimate",
+            "predicted_intent": "card_arrival",
+            "count": 3
+          },
+          {
+            "true_intent": "top_up_by_bank_transfer_charge",
+            "predicted_intent": "transfer_fee_charged",
+            "count": 3
+          },
+          {
+            "true_intent": "transfer_not_received_by_recipient",
+            "predicted_intent": "pending_transfer",
+            "count": 3
+          },
+          {
+            "true_intent": "card_payment_not_recognised",
+            "predicted_intent": "compromised_card",
+            "count": 3
+          },
+          {
+            "true_intent": "declined_cash_withdrawal",
+            "predicted_intent": "wrong_amount_of_cash_received",
+            "count": 3
+          },
+          {
+            "true_intent": "card_swallowed",
+            "predicted_intent": "declined_cash_withdrawal",
+            "count": 3
+          },
+          {
+            "true_intent": "beneficiary_not_allowed",
+            "predicted_intent": "failed_transfer",
+            "count": 3
+          },
+          {
+            "true_intent": "transfer_fee_charged",
+            "predicted_intent": "top_up_by_bank_transfer_charge",
+            "count": 3
+          },
+          {
+            "true_intent": "transfer_into_account",
+            "predicted_intent": "balance_not_updated_after_bank_transfer",
+            "count": 3
+          },
+          {
+            "true_intent": "balance_not_updated_after_bank_transfer",
+            "predicted_intent": "pending_transfer",
+            "count": 3
+          },
+          {
+            "true_intent": "verify_my_identity",
+            "predicted_intent": "why_verify_identity",
+            "count": 3
+          },
+          {
+            "true_intent": "extra_charge_on_statement",
+            "predicted_intent": "verify_source_of_funds",
+            "count": 2
+          },
+          {
+            "true_intent": "fiat_currency_support",
+            "predicted_intent": "country_support",
+            "count": 2
+          },
+          {
+            "true_intent": "lost_or_stolen_card",
+            "predicted_intent": "compromised_card",
+            "count": 2
+          },
+          {
+            "true_intent": "pin_blocked",
+            "predicted_intent": "get_physical_card",
+            "count": 2
+          },
+          {
+            "true_intent": "contactless_not_working",
+            "predicted_intent": "card_payment_not_recognised",
+            "count": 2
+          }
+        ]
+      },
+      "ood": {
+        "massive_validation": {
+          "auroc": 0.9750506419752666,
+          "auprc": 0.9658767421343052,
+          "ood_unknown_recall": 0.8854003139717426,
+          "in_domain_false_rejection_rate": 0.04983748645720477
+        },
+        "massive_test": {
+          "auroc": 0.981358542288886,
+          "auprc": 0.9626958753246636,
+          "ood_unknown_recall": 0.8998923573735199,
+          "in_domain_false_rejection_rate": 0.03784693019343986
+        },
+        "bank_faq_validation": {
+          "auroc": 0.9425352112676056,
+          "auprc": 0.5325384691806775,
+          "ood_unknown_recall": 0.74,
+          "in_domain_false_rejection_rate": 0.04983748645720477
+        },
+        "bank_faq_test": {
+          "auroc": 0.9603195962994112,
+          "auprc": 0.5592964068060026,
+          "ood_unknown_recall": 0.74,
+          "in_domain_false_rejection_rate": 0.03784693019343986
+        }
+      },
+      "ood_errors": {
+        "massive_validation": [
+          {
+            "text": "lặp lại bài hát này",
+            "confidence": 0.8339063501496918
+          },
+          {
+            "text": "bài hát đó là gì",
+            "confidence": 0.39437297945309635
+          },
+          {
+            "text": "bên ngoài đang mưa không",
+            "confidence": 0.4106499769610373
+          },
+          {
+            "text": "tắt ổ cắm thông minh",
+            "confidence": 0.6660803144691
+          },
+          {
+            "text": "bởi mỹ tâm",
+            "confidence": 0.5039458614263129
+          },
+          {
+            "text": "email tôi lời bài hát này",
+            "confidence": 0.4091500437270301
+          },
+          {
+            "text": "bạn có thể tắt ổ chuyển đổi thông minh không",
+            "confidence": 0.3902797083566602
+          },
+          {
+            "text": "điện thoại",
+            "confidence": 0.9999942240400216
+          },
+          {
+            "text": "báo thức đến trường của tôi đã được đặt chưa",
+            "confidence": 0.42582710001850793
+          },
+          {
+            "text": "bên ngoài nóng làm sao",
+            "confidence": 0.4226057277196973
+          },
+          {
+            "text": "chỉnh phòng khách màu xanh dương",
+            "confidence": 0.4404549594497313
+          },
+          {
+            "text": "thời tiết thứ hai tuần này thế nào",
+            "confidence": 0.561035018222859
+          },
+          {
+            "text": "trời nó nóng hôm nay phải không nhỉ",
+            "confidence": 0.5442922166436669
+          },
+          {
+            "text": "bạn có thể khởi động robot hút bụi không",
+            "confidence": 0.4195001564070695
+          },
+          {
+            "text": "thanh toán hôm nay đặt báo thức lúc mười giờ sáng",
+            "confidence": 0.7298239415391446
+          },
+          {
+            "text": "thêm bài hát đó vào danh sách top mười bài yêu thích của tôi",
+            "confidence": 0.6066670184035718
+          },
+          {
+            "text": "hôm nay trời u ám phải không",
+            "confidence": 0.5177282771354511
+          },
+          {
+            "text": "thời tiết vào thứ hai",
+            "confidence": 0.40543294758174275
+          },
+          {
+            "text": "thời tiết ở khu dân cư",
+            "confidence": 0.425503884770433
+          },
+          {
+            "text": "giảm tối đa nguồn đèn",
+            "confidence": 0.45833001435065257
+          }
+        ],
+        "massive_test": [
+          {
+            "text": "cho tôi biết thời tiết tuần này",
+            "confidence": 0.39031275694954415
+          },
+          {
+            "text": "ngày mai tôi có nên mang theo dù",
+            "confidence": 0.4422485887643263
+          },
+          {
+            "text": "nói cho tôi thời tiết hai ngày kể từ bây giờ ở barcelona",
+            "confidence": 0.4200030930522024
+          },
+          {
+            "text": "kích hoạt ổ cắm của tôi",
+            "confidence": 0.9999629899930534
+          },
+          {
+            "text": "bật ổ cắm thông minh",
+            "confidence": 0.6660803144691
+          },
+          {
+            "text": "cấp nguồn cho ổ cắm một",
+            "confidence": 0.9762102243179821
+          },
+          {
+            "text": "bạn có thể giảm bớt các đèn xuống không",
+            "confidence": 0.9135930288637742
+          },
+          {
+            "text": "khởi động robot hút bụi",
+            "confidence": 0.7711195281873154
+          },
+          {
+            "text": "vui lòng xóa báo thức của tôi",
+            "confidence": 0.8617705959417103
+          },
+          {
+            "text": "bạn có thể tắt đèn không",
+            "confidence": 0.6281730544702085
+          },
+          {
+            "text": "ai hát bài hát về người lái đò",
+            "confidence": 0.39753346043574933
+          },
+          {
+            "text": "làm ơn tắt đèn phòng của con trai tôi",
+            "confidence": 0.6912130340509414
+          },
+          {
+            "text": "đổi chế độ nhạc sang rock",
+            "confidence": 0.433076233866579
+          },
+          {
+            "text": "tôi muốn thêm ánh sáng",
+            "confidence": 0.7373547530097337
+          },
+          {
+            "text": "chỉ cho tôi màu mờ",
+            "confidence": 0.9812358004336921
+          },
+          {
+            "text": "bài hát nhớ",
+            "confidence": 0.4155797459499759
+          },
+          {
+            "text": "cho tôi thêm ánh sáng",
+            "confidence": 0.5657850967829205
+          },
+          {
+            "text": "làm sao tôi có thể khởi động robot hút bụi",
+            "confidence": 0.4723648624068669
+          },
+          {
+            "text": "tắt ổ chuyển đổi thông minh",
+            "confidence": 0.539715827577047
+          },
+          {
+            "text": "tắt ổ cắm điện",
+            "confidence": 0.9250879347491731
+          }
+        ],
+        "bank_faq_validation": [
+          {
+            "text": "Khách hàng của ngân hàng có thể trả nợ trước hạn hay không và có mất phí không?",
+            "confidence": 0.4327908755301093
+          },
+          {
+            "text": "Sau khi ngân hàng giải ngân, khách hàng có thể theo dõi khoản vay ở đâu?",
+            "confidence": 0.8407030806108889
+          },
+          {
+            "text": "Ngân hàng có hỗ trợ gửi tiết kiệm bằng ngoại tệ không?",
+            "confidence": 0.3889941081055704
+          },
+          {
+            "text": "Số tiền tối thiểu để mở tài khoản tiết kiệm tại ngân hàng là bao nhiêu?",
+            "confidence": 0.7748104992697202
+          },
+          {
+            "text": "Doanh nghiệp có những hình thức gửi tiền nào tại ngân hàng?",
+            "confidence": 0.41386602259276445
+          },
+          {
+            "text": "Tiền gửi có kỳ hạn và tiền gửi không kỳ hạn của doanh nghiệp khác nhau ra sao?",
+            "confidence": 0.5291503181976307
+          },
+          {
+            "text": "Nếu rút trước hạn sản phẩm tiết kiệm trả lãi ngay, khách hàng được hưởng lãi thế nào?",
+            "confidence": 0.8454600295428808
+          },
+          {
+            "text": "Lãi suất gửi tiết kiệm tại ngân hàng hiện được tra cứu như thế nào?",
+            "confidence": 0.8253805822439175
+          },
+          {
+            "text": "Lãi suất vay ngân hàng thường được tính theo dư nợ giảm dần như thế nào?",
+            "confidence": 0.7855275863692739
+          },
+          {
+            "text": "Lãi suất vay ngân hàng có thể được tính theo dư nợ ban đầu như thế nào?",
+            "confidence": 0.6980270862925386
+          },
+          {
+            "text": "Lãi suất thẻ S Rewards Mastercard được tính như thế nào?",
+            "confidence": 0.8416294972176499
+          },
+          {
+            "text": "Happy Monday của ngân hàng có ưu đãi gì cho khoản tiền gửi mở mới?",
+            "confidence": 0.4396197911243975
+          },
+          {
+            "text": "Khách hàng có thể theo dõi các khuyến mãi đang diễn ra của ngân hàng ở đâu?",
+            "confidence": 0.9030084383390848
+          }
+        ],
+        "bank_faq_test": [
+          {
+            "text": "Khi vay mua ô tô tại ngân hàng, khách hàng có bắt buộc mua bảo hiểm cho xe không?",
+            "confidence": 0.5967388137889003
+          },
+          {
+            "text": "Tài khoản thấu chi MyCash của ngân hàng là gì?",
+            "confidence": 0.6653909294407151
+          },
+          {
+            "text": "Lãi suất ưu đãi và lãi suất sau ưu đãi của khoản vay khác nhau ở điểm nào?",
+            "confidence": 0.4620612094345735
+          },
+          {
+            "text": "Có thể gửi thêm tiền vào khoản Tiền gửi rút gốc linh hoạt của ngân hàng không?",
+            "confidence": 0.49837222446329954
+          },
+          {
+            "text": "Lãi suất gửi tiết kiệm là gì?",
+            "confidence": 0.4906128429794152
+          },
+          {
+            "text": "Lãi suất tiết kiệm không kỳ hạn được hiểu như thế nào?",
+            "confidence": 0.8804323439671805
+          },
+          {
+            "text": "Lãi suất vay là gì?",
+            "confidence": 0.5609268302040159
+          },
+          {
+            "text": "Lãi suất sau ưu đãi của khoản vay được xác định như thế nào?",
+            "confidence": 0.8958135821854138
+          },
+          {
+            "text": "Lãi suất thẻ UnionPay FreeWays là bao nhiêu?",
+            "confidence": 0.7525745560237875
+          },
+          {
+            "text": "Chủ thẻ tín dụng được hưởng những loại ưu đãi nào?",
+            "confidence": 0.5919790923728139
+          },
+          {
+            "text": "Khi dùng thẻ MWG, bao giờ khách hàng nhận được tiền hoàn từ chi tiêu?",
+            "confidence": 0.5705486500382131
+          },
+          {
+            "text": "Điểm thưởng của thẻ YOJO được đổi như thế nào?",
+            "confidence": 0.48840578723862127
+          },
+          {
+            "text": "Khách hàng mở mới thẻ UnionPay FreeWays có ưu đãi hoàn tiền nào?",
+            "confidence": 0.5952474006613031
+          }
+        ]
+      }
+    },
+    "deep": {
+      "temperature": 0.7651287982137208,
+      "threshold": 0.506853197913356,
+      "calibration_before": {
+        "nll": 0.5791102647781372,
+        "ece": 0.11311366217753739
+      },
+      "calibration_after": {
+        "nll": 0.492578056378455,
+        "ece": 0.034455371361563604
+      },
+      "test_calibrated": {
+        "accuracy": 0.8894028595458369,
+        "macro_f1": 0.8832392219711194,
+        "top_3_accuracy": 0.9617325483599664,
+        "nll": 0.46970694232623383,
+        "ece": 0.021043396284696668
+      },
+      "threshold_validation": {
+        "accuracy": 0.8645720476706392,
+        "macro_f1": 0.8630854552500608,
+        "top_3_accuracy": 0.9544962080173348,
+        "nll": 0.5581855121367089,
+        "ece": 0.03520292194061315
+      },
+      "errors": {
+        "in_domain_rejected": [
+          {
+            "text": "Ứng dụng không hiển thị thẻ tôi đã nhận được.",
+            "true_intent": "card_linking",
+            "top_intent": "lost_or_stolen_card",
+            "confidence": 0.4301620974001912
+          },
+          {
+            "text": "Đó có phải là thời điểm tốt để trao đổi không?",
+            "true_intent": "exchange_rate",
+            "top_intent": "exchange_charge",
+            "confidence": 0.2511466251198772
+          },
+          {
+            "text": "Họ tính phí tôi sai cho một giao dịch đổi tiền khi mua hàng.",
+            "true_intent": "card_payment_wrong_exchange_rate",
+            "top_intent": "transfer_fee_charged",
+            "confidence": 0.22661980939528895
+          },
+          {
+            "text": "Có một khoản phí thêm trên ứng dụng của tôi mà tôi không được thông báo hoặc nhận thức về!",
+            "true_intent": "extra_charge_on_statement",
+            "top_intent": "direct_debit_payment_not_recognised",
+            "confidence": 0.1739444564788949
+          },
+          {
+            "text": "Tôi khá bối rối về việc đang xảy ra chuyện gì. Có một khoản phí lạ xuất hiện trong hóa đơn của tôi trên ứng dụng, được liệt kê là \"đang chờ xử lý\" và không biến mất trong vài ngày nay.",
+            "true_intent": "extra_charge_on_statement",
+            "top_intent": "direct_debit_payment_not_recognised",
+            "confidence": 0.4376507862935272
+          },
+          {
+            "text": "Bạn có thể cho tôi biết tôi có thể nhận được loại tiền tệ nào không?",
+            "true_intent": "fiat_currency_support",
+            "top_intent": "fiat_currency_support",
+            "confidence": 0.4600953993130675
+          },
+          {
+            "text": "Làm thế nào để tôi chấp nhận các giao dịch từ EU?",
+            "true_intent": "fiat_currency_support",
+            "top_intent": "fiat_currency_support",
+            "confidence": 0.1702479599562814
+          },
+          {
+            "text": "Làm thế nào để đảm bảo rằng tôi không hết tiền trong thẻ khi đi du lịch?",
+            "true_intent": "automatic_top_up",
+            "top_intent": "pending_card_payment",
+            "confidence": 0.1577459603801371
+          },
+          {
+            "text": "Nếu không còn nhiều tiền, có tính năng nạp thêm tiền không?",
+            "true_intent": "automatic_top_up",
+            "top_intent": "top_up_limits",
+            "confidence": 0.40633748902048294
+          },
+          {
+            "text": "Thẻ của tôi dường như bị hỏng. Tôi có thể sửa nó như thế nào?",
+            "true_intent": "card_not_working",
+            "top_intent": "card_not_working",
+            "confidence": 0.41294845247557627
+          },
+          {
+            "text": "Bạn có thể giúp tôi xác định vấn đề với thẻ ngân hàng của tôi không?",
+            "true_intent": "card_not_working",
+            "top_intent": "balance_not_updated_after_bank_transfer",
+            "confidence": 0.13523664744608774
+          },
+          {
+            "text": "Thẻ của tôi không chấp nhận bất kỳ giao dịch nào cả. Làm sao đây?",
+            "true_intent": "card_not_working",
+            "top_intent": "card_not_working",
+            "confidence": 0.4188820669638634
+          },
+          {
+            "text": "Ôi trời ơi! Mất thẻ rồi! Cứu với!",
+            "true_intent": "lost_or_stolen_card",
+            "top_intent": "compromised_card",
+            "confidence": 0.26463605052757716
+          },
+          {
+            "text": "Một bản sao của báo cáo cảnh sát có cần thiết để hoàn tất thủ tục báo cáo không?",
+            "true_intent": "lost_or_stolen_card",
+            "top_intent": "request_refund",
+            "confidence": 0.09915249892210976
+          },
+          {
+            "text": "Ai đó đã lấy ví của tôi vào lúc nào đó hôm nay, tôi không chắc chắn lắm, có lẽ là ở Piccadilly Circus. Bạn có thể kiểm tra xem có ai cố gắng sử dụng thẻ và tất nhiên là chặn nó ngay lập tức được không?",
+            "true_intent": "lost_or_stolen_card",
+            "top_intent": "card_payment_not_recognised",
+            "confidence": 0.29531391763392056
+          },
+          {
+            "text": "Làm thế nào để tôi có thể khóa một thẻ đã bị đánh cắp?",
+            "true_intent": "lost_or_stolen_card",
+            "top_intent": "pin_blocked",
+            "confidence": 0.5064951866321756
+          },
+          {
+            "text": "Tôi không thể tìm thấy thẻ tín dụng của mình.",
+            "true_intent": "lost_or_stolen_card",
+            "top_intent": "topping_up_by_card",
+            "confidence": 0.3299773004536793
+          },
+          {
+            "text": "Nếu máy ATM không chấp nhận thêm bất kỳ mã PIN nào của tôi, tôi phải làm gì?",
+            "true_intent": "pin_blocked",
+            "top_intent": "change_pin",
+            "confidence": 0.49127280051501254
+          },
+          {
+            "text": "Phí cho thẻ mới là bao nhiêu?",
+            "true_intent": "contactless_not_working",
+            "top_intent": "extra_charge_on_statement",
+            "confidence": 0.31294948563133057
+          },
+          {
+            "text": "Tôi muốn chuyển tiền. Phí chuyển tiền là bao nhiêu?",
+            "true_intent": "top_up_by_bank_transfer_charge",
+            "top_intent": "transfer_fee_charged",
+            "confidence": 0.48219374037261004
+          }
+        ],
+        "confusion_pairs": [
+          {
+            "true_intent": "topping_up_by_card",
+            "predicted_intent": "top_up_reverted",
+            "count": 7
+          },
+          {
+            "true_intent": "verify_my_identity",
+            "predicted_intent": "why_verify_identity",
+            "count": 7
+          },
+          {
+            "true_intent": "transfer_not_received_by_recipient",
+            "predicted_intent": "pending_transfer",
+            "count": 5
+          },
+          {
+            "true_intent": "card_swallowed",
+            "predicted_intent": "declined_cash_withdrawal",
+            "count": 5
+          },
+          {
+            "true_intent": "balance_not_updated_after_bank_transfer",
+            "predicted_intent": "transfer_not_received_by_recipient",
+            "count": 5
+          },
+          {
+            "true_intent": "card_arrival",
+            "predicted_intent": "card_delivery_estimate",
+            "count": 4
+          },
+          {
+            "true_intent": "card_acceptance",
+            "predicted_intent": "country_support",
+            "count": 4
+          },
+          {
+            "true_intent": "card_payment_not_recognised",
+            "predicted_intent": "direct_debit_payment_not_recognised",
+            "count": 4
+          },
+          {
+            "true_intent": "card_payment_not_recognised",
+            "predicted_intent": "compromised_card",
+            "count": 4
+          },
+          {
+            "true_intent": "declined_transfer",
+            "predicted_intent": "declined_card_payment",
+            "count": 4
+          },
+          {
+            "true_intent": "balance_not_updated_after_bank_transfer",
+            "predicted_intent": "pending_transfer",
+            "count": 4
+          },
+          {
+            "true_intent": "cash_withdrawal_not_recognised",
+            "predicted_intent": "declined_cash_withdrawal",
+            "count": 4
+          },
+          {
+            "true_intent": "fiat_currency_support",
+            "predicted_intent": "exchange_via_app",
+            "count": 3
+          },
+          {
+            "true_intent": "card_delivery_estimate",
+            "predicted_intent": "card_arrival",
+            "count": 3
+          },
+          {
+            "true_intent": "wrong_amount_of_cash_received",
+            "predicted_intent": "declined_cash_withdrawal",
+            "count": 3
+          },
+          {
+            "true_intent": "pending_transfer",
+            "predicted_intent": "transfer_not_received_by_recipient",
+            "count": 3
+          },
+          {
+            "true_intent": "transfer_fee_charged",
+            "predicted_intent": "top_up_by_bank_transfer_charge",
+            "count": 3
+          },
+          {
+            "true_intent": "failed_transfer",
+            "predicted_intent": "beneficiary_not_allowed",
+            "count": 3
+          },
+          {
+            "true_intent": "transfer_into_account",
+            "predicted_intent": "topping_up_by_card",
+            "count": 3
+          },
+          {
+            "true_intent": "get_disposable_virtual_card",
+            "predicted_intent": "getting_virtual_card",
+            "count": 3
+          }
+        ]
+      },
+      "ood": {
+        "massive_validation": {
+          "auroc": 0.94615707771566,
+          "auprc": 0.9211641432290661,
+          "ood_unknown_recall": 0.6907378335949764,
+          "in_domain_false_rejection_rate": 0.04983748645720477
+        },
+        "massive_test": {
+          "auroc": 0.9479341035197962,
+          "auprc": 0.88494393377666,
+          "ood_unknown_recall": 0.7179763186221744,
+          "in_domain_false_rejection_rate": 0.04163162321278385
+        },
+        "bank_faq_validation": {
+          "auroc": 0.9478439869989166,
+          "auprc": 0.46532222059857375,
+          "ood_unknown_recall": 0.68,
+          "in_domain_false_rejection_rate": 0.04983748645720477
+        },
+        "bank_faq_test": {
+          "auroc": 0.9546425567703953,
+          "auprc": 0.37475855456465856,
+          "ood_unknown_recall": 0.64,
+          "in_domain_false_rejection_rate": 0.04163162321278385
+        }
+      },
+      "ood_errors": {
+        "massive_validation": [
+          {
+            "text": "dự báo thời tiết cho tuần là gì",
+            "confidence": 0.6370902936483417
+          },
+          {
+            "text": "lặp lại bài hát này",
+            "confidence": 0.5450652251820703
+          },
+          {
+            "text": "bên ngoài đang mưa không",
+            "confidence": 0.6601560225016452
+          },
+          {
+            "text": "nhiệt độ ngày mai ngoài đó sẽ như thế nào",
+            "confidence": 0.55043704491712
+          },
+          {
+            "text": "dự báo thời tiết ngày mai như thế nào",
+            "confidence": 0.5945549044451149
+          },
+          {
+            "text": "thời tiết vào thứ sáu như thế nào",
+            "confidence": 0.8628849005457718
+          },
+          {
+            "text": "cài một cuộc gọi báo thức lúc mười giờ sáng",
+            "confidence": 0.5852794300830266
+          },
+          {
+            "text": "đặt báo thức lúc ba giờ chiều",
+            "confidence": 0.9093612677376204
+          },
+          {
+            "text": "cài báo thức lúc một giờ chiều",
+            "confidence": 0.7291553924742636
+          },
+          {
+            "text": "bắt đầu báo thức",
+            "confidence": 0.5127703048404608
+          },
+          {
+            "text": "tôi muốn thức dậy lúc sáu giờ sáng ngày mai",
+            "confidence": 0.8566878659060082
+          },
+          {
+            "text": "thời tiết hiện tại thế nào",
+            "confidence": 0.6622254041053668
+          },
+          {
+            "text": "thời tiết như thế nào trong tuần này",
+            "confidence": 0.6692792353662891
+          },
+          {
+            "text": "điện thoại",
+            "confidence": 0.9724905612590956
+          },
+          {
+            "text": "bên ngoài nóng làm sao",
+            "confidence": 0.8390882589586564
+          },
+          {
+            "text": "trời sẽ mưa phải không",
+            "confidence": 0.8869109532613374
+          },
+          {
+            "text": "trời nó nóng hôm nay phải không nhỉ",
+            "confidence": 0.7970987230905097
+          },
+          {
+            "text": "tuần này có tuyết đúng không",
+            "confidence": 0.9348153768735868
+          },
+          {
+            "text": "làm ơn hiện dự báo thời tiết cho tuần này",
+            "confidence": 0.9458799135673889
+          },
+          {
+            "text": "nhiệt độ cao nhất trong tuần tới là bao nhiêu",
+            "confidence": 0.7378280898010628
+          }
+        ],
+        "massive_test": [
+          {
+            "text": "màu hồng là màu chúng tôi cần",
+            "confidence": 0.5996642692423579
+          },
+          {
+            "text": "cho tôi biết thời tiết tuần này",
+            "confidence": 0.6019203920867818
+          },
+          {
+            "text": "cài đặt báo thức vào bảy giờ sáng thứ năm",
+            "confidence": 0.536383476699254
+          },
+          {
+            "text": "xóa báo thức tôi vừa cài đặt",
+            "confidence": 0.661527411520158
+          },
+          {
+            "text": "ngày mai tôi có nên mang theo dù",
+            "confidence": 0.898067327391617
+          },
+          {
+            "text": "thời tiết thế nào",
+            "confidence": 0.6177728009678825
+          },
+          {
+            "text": "kích hoạt ổ cắm của tôi",
+            "confidence": 0.9813736307394835
+          },
+          {
+            "text": "xóa báo thức đầu tiên",
+            "confidence": 0.9573120407348343
+          },
+          {
+            "text": "đặt báo thức lúc chín giờ sáng",
+            "confidence": 0.8187086078173722
+          },
+          {
+            "text": "làm ơn đổ chuông báo thức dậy lúc tám giờ sáng thứ bảy tới",
+            "confidence": 0.8372205271394291
+          },
+          {
+            "text": "nhiệt độ hiện tại bên ngoài là bao nhiêu",
+            "confidence": 0.8196518986141299
+          },
+          {
+            "text": "chuông báo của tôi",
+            "confidence": 0.5621916247020163
+          },
+          {
+            "text": "cài báo thức lúc tám giờ sáng",
+            "confidence": 0.6132387829504118
+          },
+          {
+            "text": "vui lòng xóa báo thức của tôi",
+            "confidence": 0.9693320272945712
+          },
+          {
+            "text": "đặt báo thức lúc bảy giờ sáng",
+            "confidence": 0.8296696785536063
+          },
+          {
+            "text": "cho biết dự báo khí hậu hôm nay ở đây",
+            "confidence": 0.892274885576889
+          },
+          {
+            "text": "thời tiết bên ngoài tuần này có tốt không",
+            "confidence": 0.841834139116424
+          },
+          {
+            "text": "làm ơn cho tôi xem thời tiết vào ngày mai ở costa mesa",
+            "confidence": 0.5637784131494996
+          },
+          {
+            "text": "xóa báo thức ngày mai",
+            "confidence": 0.9281074524109452
+          },
+          {
+            "text": "tuần này sẽ mưa không",
+            "confidence": 0.9514293893074528
+          }
+        ],
+        "bank_faq_validation": [
+          {
+            "text": "Quy trình đăng ký vay tiêu dùng có tài sản bảo đảm tại ngân hàng gồm những bước nào?",
+            "confidence": 0.6452124678985538
+          },
+          {
+            "text": "Vay kinh doanh từng lần tại ngân hàng là gì?",
+            "confidence": 0.8776302569742629
+          },
+          {
+            "text": "Khách hàng của ngân hàng có thể trả nợ trước hạn hay không và có mất phí không?",
+            "confidence": 0.8088649195549898
+          },
+          {
+            "text": "Số tiền tối thiểu để mở tài khoản tiết kiệm tại ngân hàng là bao nhiêu?",
+            "confidence": 0.5953409929418736
+          },
+          {
+            "text": "Doanh nghiệp có những hình thức gửi tiền nào tại ngân hàng?",
+            "confidence": 0.8057709126195357
+          },
+          {
+            "text": "Doanh nghiệp có thể rút tiền trước hạn đối với khoản tiền gửi có kỳ hạn không?",
+            "confidence": 0.8324572905733609
+          },
+          {
+            "text": "Khi gửi tiết kiệm trả lãi ngay, tiền lãi được nhận vào thời điểm nào?",
+            "confidence": 0.6230075576008275
+          },
+          {
+            "text": "Nếu rút trước hạn sản phẩm tiết kiệm trả lãi ngay, khách hàng được hưởng lãi thế nào?",
+            "confidence": 0.6273941520665267
+          },
+          {
+            "text": "Lãi suất tiền gửi doanh nghiệp tại ngân hàng được tính theo công thức nào?",
+            "confidence": 0.6449505985990928
+          },
+          {
+            "text": "Lãi suất áp dụng cho khoản tiền gửi có kỳ hạn của doanh nghiệp được xác định vào thời điểm nào?",
+            "confidence": 0.6084114673179191
+          },
+          {
+            "text": "Ngoài lãi suất niêm yết, ngân hàng có chính sách cộng thêm lãi suất không?",
+            "confidence": 0.5385372238892066
+          },
+          {
+            "text": "Lãi suất vay ngân hàng thường được tính theo dư nợ giảm dần như thế nào?",
+            "confidence": 0.8354867421402403
+          },
+          {
+            "text": "Lãi suất vay ngân hàng có thể được tính theo dư nợ ban đầu như thế nào?",
+            "confidence": 0.714775969667405
+          },
+          {
+            "text": "Lãi suất vay tiêu dùng tín chấp và thế chấp thường khác nhau ra sao?",
+            "confidence": 0.5720138472722455
+          },
+          {
+            "text": "Ngân hàng có chương trình cộng thêm lãi suất ngoài mức niêm yết không?",
+            "confidence": 0.7404730135358634
+          },
+          {
+            "text": "Ưu đãi cho khoản tiền gửi đầu tiên tại ngân hàng được áp dụng như thế nào?",
+            "confidence": 0.6719870683218666
+          }
+        ],
+        "bank_faq_test": [
+          {
+            "text": "Bảo hiểm cho ô tô đang thế chấp tại ngân hàng được tái tục như thế nào?",
+            "confidence": 0.5488076265284803
+          },
+          {
+            "text": "Thời hạn tối đa của một khoản vay tại ngân hàng là bao lâu?",
+            "confidence": 0.5835437978064255
+          },
+          {
+            "text": "Kỳ hạn vay tín chấp online tại ngân hàng có thể kéo dài tối đa bao lâu?",
+            "confidence": 0.8217019677697324
+          },
+          {
+            "text": "Có thể gửi thêm tiền vào khoản Tiền gửi rút gốc linh hoạt của ngân hàng không?",
+            "confidence": 0.5607914131308618
+          },
+          {
+            "text": "Tiết kiệm online là gì và khác gì so với gửi tại quầy?",
+            "confidence": 0.7381921708700204
+          },
+          {
+            "text": "Mở sổ tiết kiệm online tại ngân hàng có cần đến quầy giao dịch không?",
+            "confidence": 0.5153987740708544
+          },
+          {
+            "text": "Tiết kiệm gửi góp phù hợp với nhu cầu tài chính nào?",
+            "confidence": 0.517574831113214
+          },
+          {
+            "text": "Tiết kiệm rút gốc từng phần có ưu điểm gì?",
+            "confidence": 0.7325671457203592
+          },
+          {
+            "text": "Khi mở sổ tiết kiệm online tại ngân hàng, khách hàng thực hiện những bước nào?",
+            "confidence": 0.6740133062254883
+          },
+          {
+            "text": "Lãi suất gửi tiết kiệm là gì?",
+            "confidence": 0.6811778956564772
+          },
+          {
+            "text": "Lãi suất tiết kiệm có kỳ hạn là gì?",
+            "confidence": 0.9504055541158175
+          },
+          {
+            "text": "Lãi suất tiết kiệm không kỳ hạn được hiểu như thế nào?",
+            "confidence": 0.9039681801294362
+          },
+          {
+            "text": "Những yếu tố nào thường ảnh hưởng đến lãi suất tiết kiệm?",
+            "confidence": 0.6255572880262241
+          },
+          {
+            "text": "Cách tính tiền lãi gửi tiết kiệm chính xác như thế nào?",
+            "confidence": 0.5884177014707107
+          },
+          {
+            "text": "Lãi suất vay là gì?",
+            "confidence": 0.785563837083102
+          },
+          {
+            "text": "Lãi suất ưu đãi của khoản vay là gì?",
+            "confidence": 0.581998952601415
+          },
+          {
+            "text": "Khi lãi suất thay đổi, số tiền phải trả của khoản vay có bị ảnh hưởng không?",
+            "confidence": 0.7526157274069866
+          },
+          {
+            "text": "Chọn kỳ hạn vay dài có làm tổng tiền lãi phải trả tăng lên không?",
+            "confidence": 0.5538428588550758
+          }
+        ]
+      }
+    }
+  },
+  "ood": {
+    "massive_validation": {
+      "baseline": {
+        "auroc": 0.9750506419752666,
+        "auprc": 0.9658767421343052,
+        "ood_unknown_recall": 0.8854003139717426,
+        "in_domain_false_rejection_rate": 0.04983748645720477
+      },
+      "deep": {
+        "auroc": 0.94615707771566,
+        "auprc": 0.9211641432290661,
+        "ood_unknown_recall": 0.6907378335949764,
+        "in_domain_false_rejection_rate": 0.04983748645720477
+      }
+    },
+    "massive_test": {
+      "baseline": {
+        "auroc": 0.981358542288886,
+        "auprc": 0.9626958753246636,
+        "ood_unknown_recall": 0.8998923573735199,
+        "in_domain_false_rejection_rate": 0.03784693019343986
+      },
+      "deep": {
+        "auroc": 0.9479341035197962,
+        "auprc": 0.88494393377666,
+        "ood_unknown_recall": 0.7179763186221744,
+        "in_domain_false_rejection_rate": 0.04163162321278385
+      }
+    },
+    "bank_faq_validation": {
+      "baseline": {
+        "auroc": 0.9425352112676056,
+        "auprc": 0.5325384691806775,
+        "ood_unknown_recall": 0.74,
+        "in_domain_false_rejection_rate": 0.04983748645720477
+      },
+      "deep": {
+        "auroc": 0.9478439869989166,
+        "auprc": 0.46532222059857375,
+        "ood_unknown_recall": 0.68,
+        "in_domain_false_rejection_rate": 0.04983748645720477
+      }
+    },
+    "bank_faq_test": {
+      "baseline": {
+        "auroc": 0.9603195962994112,
+        "auprc": 0.5592964068060026,
+        "ood_unknown_recall": 0.74,
+        "in_domain_false_rejection_rate": 0.03784693019343986
+      },
+      "deep": {
+        "auroc": 0.9546425567703953,
+        "auprc": 0.37475855456465856,
+        "ood_unknown_recall": 0.64,
+        "in_domain_false_rejection_rate": 0.04163162321278385
+      }
+    }
+  },
+  "data": {
+    "seed": 42,
+    "source": {
+      "name": "GreenNode/banking77-vn",
+      "config": null,
+      "text_column": "text",
+      "label_column": "label",
+      "label_text_column": "label_text",
+      "train_split": "train",
+      "test_split": "test"
+    },
+    "counts": {
+      "train": 6459,
+      "model_selection": 923,
+      "calibration": 923,
+      "threshold": 923,
+      "test": 2378
+    },
+    "deduplication": {
+      "train_removed_overlapping_test": 365,
+      "train_removed_within_train": 410,
+      "test_rows_kept": 2378
+    },
+    "label_count": 77,
+    "label_names": [
+      "activate_my_card",
+      "age_limit",
+      "card_acceptance",
+      "card_arrival",
+      "card_delivery_estimate",
+      "card_linking",
+      "card_not_working",
+      "card_payment_fee_charged",
+      "card_payment_not_recognised",
+      "card_payment_wrong_exchange_rate",
+      "card_swallowed",
+      "cash_withdrawal_charge",
+      "apple_pay_or_google_pay",
+      "cash_withdrawal_not_recognised",
+      "change_pin",
+      "compromised_card",
+      "contactless_not_working",
+      "country_support",
+      "declined_card_payment",
+      "declined_cash_withdrawal",
+      "declined_transfer",
+      "direct_debit_payment_not_recognised",
+      "disposable_card_limits",
+      "atm_support",
+      "edit_personal_details",
+      "exchange_charge",
+      "exchange_rate",
+      "exchange_via_app",
+      "extra_charge_on_statement",
+      "failed_transfer",
+      "fiat_currency_support",
+      "get_disposable_virtual_card",
+      "get_physical_card",
+      "getting_spare_card",
+      "automatic_top_up",
+      "getting_virtual_card",
+      "lost_or_stolen_card",
+      "lost_or_stolen_phone",
+      "order_physical_card",
+      "passcode_forgotten",
+      "pending_card_payment",
+      "pending_cash_withdrawal",
+      "pending_top_up",
+      "pending_transfer",
+      "pin_blocked",
+      "balance_not_updated_after_bank_transfer",
+      "receiving_money",
+      "Refund_not_showing_up",
+      "request_refund",
+      "reverted_card_payment?",
+      "supported_cards_and_currencies",
+      "terminate_account",
+      "top_up_by_bank_transfer_charge",
+      "top_up_by_card_charge",
+      "top_up_by_cash_or_cheque",
+      "top_up_failed",
+      "balance_not_updated_after_cheque_or_cash_deposit",
+      "top_up_limits",
+      "top_up_reverted",
+      "topping_up_by_card",
+      "transaction_charged_twice",
+      "transfer_fee_charged",
+      "transfer_into_account",
+      "transfer_not_received_by_recipient",
+      "transfer_timing",
+      "unable_to_verify_identity",
+      "verify_my_identity",
+      "beneficiary_not_allowed",
+      "verify_source_of_funds",
+      "verify_top_up",
+      "virtual_card_not_working",
+      "visa_or_mastercard",
+      "why_verify_identity",
+      "wrong_amount_of_cash_received",
+      "wrong_exchange_rate_for_cash_withdrawal",
+      "cancel_transfer",
+      "card_about_to_expire"
+    ]
+  },
+  "ood_label_quality": {
+    "status": "faq_ai_reviewed",
+    "reason": "Người dùng xác nhận URL; Codex AI rà 100 câu với 77 intent, thu gọn hai câu nhiều vế và ghi ba cặp gần trùng; chưa là nhãn vàng do hai người gán nhãn độc lập",
+    "metric_decision": "include_with_provenance",
+    "faq_source_file": "data/raw/vietnam_banks_faq_100.csv",
+    "faq_processed_dir": "data/processed/faq_ood_real",
+    "faq_label_audit_file": "reports/faq_ood_label_audit.csv",
+    "faq_candidate_count": 100,
+    "faq_curated_count": 100,
+    "faq_source_urls": 45,
+    "faq_bank_name_normalized_count": 67,
+    "faq_original_multi_issue_rewrites": 2,
+    "faq_semantic_duplicate_followups": 3,
+    "faq_url_confirmed_by_user": true,
+    "faq_label_reviewed_by_codex_ai": true,
+    "faq_two_human_gold_verified": false
+  },
+  "ood_label_provenance": {
+    "source_urls": "confirmed_by_user",
+    "reviewer_type": "codex_ai",
+    "not_two_human_gold": true,
+    "approved_ood": 100,
+    "focused_rewrites": 2,
+    "semantic_duplicate_followups": 3
+  }
+}

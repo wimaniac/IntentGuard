@@ -1,6 +1,6 @@
 # Chẩn đoán OOD trên 100 FAQ ngân hàng có URL
 
-Nguồn hiện hành: `data/raw/vietnam_banks_faq_100.csv` do người dùng thu thập, 100 câu và 45 URL. Không có câu nào do LLM sinh trong tập này. Người dùng xác nhận URL; Codex rà lại từng nhãn OOD so với 77 intent. Đây là audit bằng AI, không phải bộ nhãn vàng do hai người gán nhãn độc lập.
+Nguồn hiện hành: `data/raw/vietnam_banks_faq_100.csv` do người dùng thu thập, 100 câu và 45 URL. Người dùng xác nhận URL; Codex rà lại từng nhãn OOD so với 77 intent. Đây là audit bằng AI, không phải bộ nhãn vàng do hai người gán nhãn độc lập.
 Metric FAQ cũng nằm trong `comparison.md` với nguồn gốc nhãn được ghi rõ; bảng dưới đây là phân tích chi tiết.
 
 Input mô hình thay tên ngân hàng bằng `ngân hàng` ở 67 câu; câu gốc và URL được giữ trong artifact. Hai câu nhiều vế được thu gọn về một nhu cầu có sẵn trong câu gốc; 3 câu gần trùng ngữ nghĩa được giữ cùng split với câu tương ứng. Threshold và temperature đọc từ artifact đã chọn trên dữ liệu in-domain, không chọn lại bằng FAQ. Validation/test chia 50/50, mỗi topic 12–13 câu; các câu cùng URL nằm trọn trong một split. Khoảng 95% cho recall bootstrap theo URL vì nhiều câu cùng lấy từ một trang.

@@ -11,7 +11,7 @@ Báo cáo này được sinh từ artifact và cấu hình hiện hành; test g�
 
 ## OOD
 
-OOD ngân hàng dùng 100 FAQ có URL do người dùng xác nhận. Codex AI đã rà từng nhãn với 77 intent và thu gọn hai câu nhiều vế; nhãn này chưa phải bộ nhãn vàng do hai người gán nhãn độc lập. Các cặp gần trùng ngữ nghĩa được giữ cùng split.
+OOD ngân hàng dùng 100 FAQ có URL do người dùng thu thập. Codex AI đã rà từng nhãn với 77 intent và thu gọn hai câu nhiều vế; nhãn này chưa phải bộ nhãn vàng do hai người gán nhãn độc lập. Các cặp gần trùng ngữ nghĩa được giữ cùng split.
 
 ```json
 {

@@ -29,34 +29,7 @@ data:
       text_column: utt
       topic_column: scenario
       topics: [alarm, weather, music, calendar, iot]
-    bank_review_file: data/raw/ood_bank_review.csv
-    bank_quality_file: data/ood_bank_quality_status.json
-    bank_candidate_file: data/interim/ood_bank_candidates.parquet
-    bank_text_column: text
-    bank_topic_column: topic
-    bank_source_case_column: source_case_id
-    bank_is_approved_column: approved_ood
-    bank_validation_cases: data/ood_bank_validation_cases.txt
-    bank_test_cases: data/ood_bank_test_cases.txt
-    expected_total: 100
-    expected_per_split: 50
-    review:
-      focus_topics: [LOAN, INTEREST_RATE, PROMOTION, SAVING]
-      secondary_topics: [OTHER, DISCOUNT]
-      min_length: 20
-      max_length: 300
-      request_cues: ["?", "cho hỏi", "tư vấn", "muốn hỏi", "làm sao", "như thế nào", "được không", "có thể", "vui lòng", "giúp", "hướng dẫn", "thắc mắc"]
-    candidate_source:
-      name: undertheseanlp/UTS2017_Bank
-      config: null
-      revision: main
-      format: jsonl
-      files:
-        train: data/classification/train.jsonl
-        test: data/classification/test.jsonl
-      splits: [train, test]
-      text_column: text
-      topic_column: label
+    faq_quality_file: data/faq_ood_quality_status.json
 
 models:
   baseline:

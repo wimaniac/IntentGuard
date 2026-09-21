@@ -105,26 +105,12 @@ def _write_markdown(report: dict[str, Any], path: Path) -> None:
         )
     if any(name.startswith("bank_faq_") for name in report["ood"]):
         ood_status_line = (
-            "OOD ngân hàng dùng 100 FAQ có URL do người dùng xác nhận. Codex AI đã rà từng nhãn với 77 intent "
+            "OOD ngân hàng dùng 100 FAQ có URL do người dùng thu thập. Codex AI đã rà từng nhãn với 77 intent "
             "và thu gọn hai câu nhiều vế; nhãn này chưa phải bộ nhãn vàng do hai người gán nhãn độc lập. "
             "Các cặp gần trùng ngữ nghĩa được giữ cùng split."
         )
-    elif any(name.startswith("bank_") for name in report["ood"]):
-        ood_status_line = (
-            "OOD ngân hàng mới gồm "
-            f"{report['ood_label_provenance']['deepseek']} nhãn DeepSeek và "
-            f"{report['ood_label_provenance']['manual']} nhãn duyệt thủ công. "
-            "Metric trên tập này là kết quả với nhãn tự động, chưa phải đánh giá trên nhãn vàng độc lập."
-        )
-    elif report.get("ood_label_quality", {}).get("metric_decision") == "omit_current_report":
-        ood_status_line = (
-            "Bỏ qua metric OOD ngân hàng chính vì chưa có bộ nhãn vàng được xác minh độc lập; "
-            "metric chính hiện chỉ gồm MASSIVE. Bộ FAQ ngân hàng có URL có báo cáo chẩn đoán riêng."
-        )
-    elif report.get("ood_label_quality", {}).get("status") == "pending_audit":
-        ood_status_line = "OOD ngân hàng bị tạm rút vì kiểm tra chất lượng phát hiện nhãn sai; metric chỉ gồm MASSIVE."
     else:
-        ood_status_line = "OOD ngân hàng mới đang chờ 100 câu hợp lệ; metric chỉ gồm MASSIVE."
+        ood_status_line = "Báo cáo OOD hiện chỉ có MASSIVE vì chưa tìm thấy bộ FAQ đã xử lý."
     lines.extend(
         [
             "",
@@ -156,51 +142,39 @@ def main() -> int:
     bundle = load_processed_bundle(paths["processed"] / "in_domain")
     artifact_dir = ROOT / args.artifact_dir if args.artifact_dir else paths["artifacts"]
     reports: dict[str, Any] = {"backends": {}, "ood": {}, "data": bundle.metadata}
-    quality_path = ROOT / config["data"]["ood"].get("bank_quality_file", "data/ood_bank_quality_status.json")
-    bank_labels_valid = True
-    faq_ai_reviewed = False
-    if quality_path.exists():
-        quality = json.loads(quality_path.read_text(encoding="utf-8"))
-        bank_labels_valid = quality.get("status") == "verified"
-        faq_ai_reviewed = quality.get("status") == "faq_ai_reviewed"
-        reports["ood_label_quality"] = quality
+    quality_path = ROOT / config["data"]["ood"].get(
+        "faq_quality_file", "data/faq_ood_quality_status.json"
+    )
     ood_frames: dict[str, pd.DataFrame] = {}
     massive_path = paths["interim"] / "ood_massive.parquet"
     if massive_path.exists():
         massive = pd.read_parquet(massive_path)
         for split in massive["source_split"].dropna().unique():
             ood_frames[f"massive_{split}"] = massive[massive["source_split"] == split].reset_index(drop=True)
-    for name in ["validation", "test"] if bank_labels_valid else []:
-        path = paths["processed"] / f"ood_bank_{name}.parquet"
-        if path.exists():
-            ood_frames[f"bank_{name}"] = pd.read_parquet(path)
-    if faq_ai_reviewed:
-        faq_dir = ROOT / quality["faq_processed_dir"]
-        faq_frames = {
-            split: pd.read_parquet(faq_dir / f"{split}.parquet").assign(split=split)
-            for split in ("validation", "test")
-        }
-        faq_all = pd.concat(faq_frames.values(), ignore_index=True)
-        raw_faq = pd.read_csv(ROOT / quality["faq_source_file"], dtype=str, keep_default_na=False)
-        raw_pairs = set(zip(raw_faq.text, raw_faq.URL, strict=True))
-        prepared_pairs = set(zip(faq_all.text_original, faq_all.source_url, strict=True))
-        if len(raw_faq) != 100 or len(raw_pairs) != 100 or raw_pairs != prepared_pairs:
-            raise ValueError("FAQ đã xử lý không khớp 100 câu/URL nguồn hiện hành")
-        audit = pd.read_csv(ROOT / quality["faq_label_audit_file"], dtype=str, keep_default_na=False)
-        audit_stats = validate_faq_label_audit(faq_all, audit)
-        ood_frames.update({f"bank_faq_{split}": frame for split, frame in faq_frames.items()})
-        reports["ood_label_provenance"] = {
-            "source_urls": "confirmed_by_user",
-            "reviewer_type": "codex_ai",
-            "not_two_human_gold": True,
-            **audit_stats,
-        }
-    elif any(name.startswith("bank_") for name in ood_frames):
-        review_path = ROOT / config["data"]["ood"]["bank_review_file"]
-        reviewed = pd.read_csv(review_path, dtype=str, keep_default_na=False)
-        approved = reviewed[reviewed["approved_ood"].eq("1")]
-        auto_count = int(approved["reviewer_note"].str.startswith("auto:").sum())
-        reports["ood_label_provenance"] = {"deepseek": auto_count, "manual": len(approved) - auto_count}
+    if quality_path.exists():
+        quality = json.loads(quality_path.read_text(encoding="utf-8"))
+        reports["ood_label_quality"] = quality
+        if quality.get("status") == "faq_ai_reviewed":
+            faq_dir = ROOT / quality["faq_processed_dir"]
+            faq_frames = {
+                split: pd.read_parquet(faq_dir / f"{split}.parquet").assign(split=split)
+                for split in ("validation", "test")
+            }
+            faq_all = pd.concat(faq_frames.values(), ignore_index=True)
+            raw_faq = pd.read_csv(ROOT / quality["faq_source_file"], dtype=str, keep_default_na=False)
+            raw_pairs = set(zip(raw_faq.text, raw_faq.URL, strict=True))
+            prepared_pairs = set(zip(faq_all.text_original, faq_all.source_url, strict=True))
+            if len(raw_faq) != 100 or len(raw_pairs) != 100 or raw_pairs != prepared_pairs:
+                raise ValueError("FAQ đã xử lý không khớp 100 câu/URL nguồn hiện hành")
+            audit = pd.read_csv(ROOT / quality["faq_label_audit_file"], dtype=str, keep_default_na=False)
+            audit_stats = validate_faq_label_audit(faq_all, audit)
+            ood_frames.update({f"bank_faq_{split}": frame for split, frame in faq_frames.items()})
+            reports["ood_label_provenance"] = {
+                "source_urls": "confirmed_by_user",
+                "reviewer_type": "codex_ai",
+                "not_two_human_gold": True,
+                **audit_stats,
+            }
 
     for backend in args.backends:
         if not (artifact_dir / f"{backend}.json").exists():
