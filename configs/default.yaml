@@ -1,0 +1,89 @@
+project:
+  seed: 42
+  data_dir: data
+  artifact_dir: data/artifacts
+  report_dir: reports
+
+data:
+  banking_dataset:
+    name: GreenNode/banking77-vn
+    config: null
+    text_column: text
+    label_column: label
+    label_text_column: label_text
+    train_split: train
+    test_split: test
+  split:
+    train_fraction: 0.70
+    model_selection_fraction: 0.10
+    calibration_fraction: 0.10
+    threshold_fraction: 0.10
+  ood:
+    massive:
+      name: AmazonScience/massive
+      config: vi-VN
+      revision: refs/convert/parquet
+      schema_file: massive.py
+      schema_revision: main
+      splits: [validation, test]
+      text_column: utt
+      topic_column: scenario
+      topics: [alarm, weather, music, calendar, iot]
+    bank_review_file: data/raw/ood_bank_review.csv
+    bank_quality_file: data/ood_bank_quality_status.json
+    bank_candidate_file: data/interim/ood_bank_candidates.parquet
+    bank_text_column: text
+    bank_topic_column: topic
+    bank_source_case_column: source_case_id
+    bank_is_approved_column: approved_ood
+    bank_validation_cases: data/ood_bank_validation_cases.txt
+    bank_test_cases: data/ood_bank_test_cases.txt
+    expected_total: 100
+    expected_per_split: 50
+    review:
+      focus_topics: [LOAN, INTEREST_RATE, PROMOTION, SAVING]
+      secondary_topics: [OTHER, DISCOUNT]
+      min_length: 20
+      max_length: 300
+      request_cues: ["?", "cho hỏi", "tư vấn", "muốn hỏi", "làm sao", "như thế nào", "được không", "có thể", "vui lòng", "giúp", "hướng dẫn", "thắc mắc"]
+    candidate_source:
+      name: undertheseanlp/UTS2017_Bank
+      config: null
+      revision: main
+      format: jsonl
+      files:
+        train: data/classification/train.jsonl
+        test: data/classification/test.jsonl
+      splits: [train, test]
+      text_column: text
+      topic_column: label
+
+models:
+  baseline:
+    grid:
+      word_ngram_range: [[1, 2], [1, 3]]
+      char_ngram_range: [[3, 5], [3, 6]]
+      min_df: [1, 2]
+      c: [1.0, 3.0]
+      max_features: [150000]
+      class_weight: [null]
+  deep:
+    name: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+    max_length: 128
+    batch_size: 8
+    gradient_accumulation_steps: 4
+    learning_rate: 0.00002
+    weight_decay: 0.01
+    max_epochs: 6
+    patience: 2
+    use_mixed_precision: true
+    num_workers: 0
+
+calibration:
+  max_rejection_rate: 0.05
+  ece_bins: 15
+
+inference:
+  top_k: 3
+  similar_k: 3
+  backend: baseline

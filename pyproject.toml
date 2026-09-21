@@ -1,0 +1,59 @@
+[project]
+name = "intentguard"
+version = "0.1.0"
+description = "Prototype phan loai yeu cau ngan hang va phat hien cau hoi ngoai pham vi."
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "accelerate>=1.6,<2",
+    "datasets>=3.5,<5",
+    "joblib>=1.4,<2",
+    "numpy>=2.0,<3",
+    "pandas>=2.2,<3",
+    "pyarrow>=18,<22",
+    "pyyaml>=6.0,<7",
+    "scikit-learn>=1.5,<2",
+    "scipy>=1.13,<2",
+    "streamlit>=1.57,<2",
+    "torch>=2.5,<3",
+    "transformers>=4.48,<5",
+    "typer>=0.15,<1",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3,<9",
+    "pytest-cov>=6,<7",
+    "ruff>=0.9,<1",
+]
+
+[tool.uv]
+default-groups = ["dev"]
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cu128", marker = "sys_platform == 'win32' and platform_machine == 'AMD64'" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+src = ["src", "scripts", "app", "tests"]
+exclude = [".uv-cache", ".venv", "data", "reports"]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/*.py" = ["E402"]
+"app/*.py" = ["E402"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
