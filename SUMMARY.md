@@ -20,6 +20,8 @@ Bộ OOD ngân hàng hiện hành là 100 FAQ có URL do người dùng thu th�
 - Suy luận tích hợp DL trả đúng `transaction_charged_twice` với confidence 0,9889, top-3 và ba câu tương tự cho ví dụ phí hai lần.
 - Giao diện Streamlit có lựa chọn baseline/DL, ba câu thử nhanh, form nhập liệu, thẻ quyết định/confidence/threshold, bảng top-3 và ba câu tương tự. Model chỉ nạp sau khi người dùng bấm phân tích.
 - Luồng UI đã được kiểm tra headless: ví dụ phí hai lần trả `transaction_charged_twice`; ví dụ vay mua nhà trả `UNKNOWN` với confidence 0,2205 dưới threshold 0,3879.
+- Repository Git đã được tạo và push lên `https://github.com/wimaniac/IntentGuard`, nhánh `main`. GitHub connector xác nhận tài khoản có quyền push và đọc được source sau khi xuất bản.
+- Bản Streamlit Community Cloud dùng baseline cùng artifact khoảng 22 MB. Artifact DL khoảng 520 MB, cache, `.env`, dữ liệu review thô và log được loại khỏi Git. UI tự ẩn backend DL khi artifact không có trên cloud.
 - Bộ FAQ mới có 100 câu, bốn topic LOAN/SAVING/INTEREST_RATE/PROMOTION mỗi topic 25 câu, 45 URL. Input mô hình ẩn tên ngân hàng ở 67 câu nhưng giữ câu gốc và URL.
 - Ba cặp gần trùng ngữ nghĩa được giữ cùng split. Validation/test có 50 câu mỗi phần và không dùng confidence để chia hoặc chọn threshold.
 - Hàng đợi UTS2017_Bank cũ và bộ 25 FAQ + 75 câu DeepSeek lịch sử chỉ được giữ để truy vết, không dùng trong đánh giá hiện hành.
@@ -44,7 +46,9 @@ Bộ OOD ngân hàng hiện hành là 100 FAQ có URL do người dùng thu th�
 - `reports/error_analysis.md`: phân tích lỗi đã cập nhật theo model mới.
 - `data/raw/vietnam_banks_faq_100.csv`, `data/processed/faq_ood_real/`: nguồn và split FAQ hiện hành.
 - `app/streamlit_app.py`: giao diện kiểm thử Streamlit đơn giản, dùng widget native và cache model theo backend.
+- `app/requirements.txt`: dependency baseline được pin đúng phiên bản cho Streamlit Community Cloud.
 - `src/intentguard/inference.py`: API suy luận chung cho UI và kiểm thử.
+- `.gitignore`: chỉ cho phép artifact baseline cần để chạy demo; chặn model DL, cache, logs, `.env` và dữ liệu sinh lớn.
 
 ## 5. Quyết định kỹ thuật
 
@@ -64,12 +68,14 @@ Bộ OOD ngân hàng hiện hành là 100 FAQ có URL do người dùng thu th�
 - Kiểm tra `IntentGuardPredictor` backend deep: PASS; trả intent, confidence, top-3 và 3 similar cases.
 - Streamlit `AppTest`: PASS cho màn hình ban đầu, intent known và nhánh `UNKNOWN`; không có exception, hai bảng kết quả đều có ba dòng.
 - Streamlit đang chạy tại `http://localhost:8502/`; health endpoint trả HTTP 200 và `ok`.
-- `git status --short`: không chạy được vì workspace không phải repository Git.
+- `git push -u origin main`: PASS; commit đầu tiên `73b658b8c3fa0cb3f18e2d948e62efac7a88b8ca` đã lên GitHub.
+- Kiểm tra staged publication: 77 file, không track `.env`, không phát hiện token tiềm năng, không có file vượt 100 MB.
 - Trên máy hiện tại cần đặt `UV_CACHE_DIR` vào `.uv-cache` trong workspace; chạy model offline bằng `HF_HUB_OFFLINE=1` và `TRANSFORMERS_OFFLINE=1` khi artifact/cache đã có.
 
 ## 7. Lỗi, rủi ro và giả định
 
 - DL mới cải thiện lớn nhưng vẫn thấp hơn baseline: chênh macro-F1 test 0,0106; MASSIVE recall 0,1819; FAQ recall 0,1000.
+- Bản Streamlit Community Cloud chỉ có baseline. Muốn bật DL cần đưa fine-tuned model lên model registry hoặc Git LFS và kiểm tra giới hạn RAM/thời gian khởi động của cloud.
 - Câu lãi suất vẫn thường bị nhận thành `exchange_rate`. Ví dụ “Lãi suất tiết kiệm có kỳ hạn là gì?” có confidence 0,9504, nên confidence threshold đơn lẻ chưa xử lý hết semantic OOD gần miền.
 - FAQ website không đại diện đầy đủ cho tin nhắn khách hàng thật. Khoảng tin cậy rộng do chỉ có 50 câu test và nhiều câu cùng URL.
 - Audit nhãn do Codex AI thực hiện; chưa có hai người rà độc lập. Một số chương trình ưu đãi có thể hết hiệu lực.
@@ -78,6 +84,6 @@ Bộ OOD ngân hàng hiện hành là 100 FAQ có URL do người dùng thu th�
 
 ## 8. Bước tiếp theo
 
-1. Thử giao diện tại `http://localhost:8502/` với cả baseline và DL.
+1. Trên Streamlit Community Cloud, chọn repository `wimaniac/IntentGuard`, branch `main`, entry point `app/streamlit_app.py` và Python 3.12.
 2. Khi cần benchmark nghiêm ngặt, tổ chức hai người gán nhãn độc lập 100 FAQ rồi adjudicate bất đồng.
 3. Khi có dữ liệu thực tế, tạo thêm OOD test từ tin nhắn khách hàng và giữ tách biệt khỏi mọi vòng chọn model.
